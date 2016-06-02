@@ -220,31 +220,33 @@
     },
 
     /**
-     * Observe the Cubbles-Component-Model: If value for slot 'markers', add the markers in the list to the google-map
+     * Observe the Cubbles-Component-Model: If value for slot 'markers', add the markers to the google-map
      */
     modelMarkersChanged: function (markers) {
       var self = this;
       markers.forEach(function (marker) {
-        Polymer.dom(self.$$('#' + self.getId())).appendChild(self._createMarkerElement(marker));
+        self._appendChildToTheMap(self._createMarkerElement(marker));
       });
     },
 
     /**
-     * Create a marker element using an object, that can have the following properties: icon, latitude, longitude,
-     * title , zIndex, animation, draggable
-     * @param marker
-     * @returns {Element}
-     * @private
+     * Observe the Cubbles-Component-Model: If value for slot 'directions', add the directions to the google-map
      */
-    _createMarkerElement: function (marker) {
-      var markerEl = document.createElement('google-map-marker');
-      var validKeys = ['icon', 'latitude', 'longitude', 'title', 'zIndex', 'animation', 'draggable'];
-      validKeys.forEach(function (key) {
-        if (marker[key]) {
-          markerEl[key] = marker[key];
-        }
+    modelDirectionsChanged: function (directions) {
+      var self = this;
+      directions.forEach(function (direction) {
+        self._appendChildToTheMap(self._createMapDirectionsElement(direction));
       });
-      return markerEl;
+    },
+
+    /**
+     * Observe the Cubbles-Component-Model: If value for slot 'polys', add the polys to the google-map
+     */
+    modelPolysChanged: function (polys) {
+      var self = this;
+      polys.forEach(function (poly) {
+        self._appendChildToTheMap(self._createMapPolyElement(poly));
+      });
     },
 
     /**
@@ -260,6 +262,85 @@
      */
     resize: function () {
       this.$$('#' + this.getId()).resize();
+    },
+
+    /**
+     * Create a google-map-marker element using an object, that can have the following properties: 'icon', 'latitude',
+     * 'longitude', 'title', 'zIndex', 'animation', 'draggable'
+     * @param {object} marker - Object to be used as base to create the google-map-marker element
+     * @returns {Element} - google-map-marker element
+     * @private
+     */
+    _createMarkerElement: function (marker) {
+      var validKeys = ['icon', 'latitude', 'longitude', 'title', 'zIndex', 'animation', 'draggable'];
+      var markerEl = this._createPolymerElement(marker, 'google-map-marker', validKeys);
+      if (marker.title) {
+        var titleSpan = document.createElement('span');
+        titleSpan.textContent = marker.title;
+        markerEl.appendChild(titleSpan);
+      }
+      return markerEl
+    },
+
+    /**
+     * Create a google-map-directions element using an object, that can have the following properties: 'startAddress',
+     * 'endAddress', 'travelMode', 'wayPoints'
+     * @param {object} directions - Object to be used as base to create the google-map-directions element
+     * @returns {Element} - google-map-directions element
+     * @private
+     */
+    _createMapDirectionsElement: function (directions) {
+      var validKeys = ['startAddress', 'endAddress', 'travelMode', 'waypoints'];
+      return this._createPolymerElement(directions, 'google-map-directions', validKeys);
+    },
+
+    /**
+     * Create a google-map-poly element using an object, that can have the following properties: 'closed', 'draggable',
+     * 'editable', 'fillColor', 'fillOpacity', 'geodesic', 'icons', 'strokeColor', 'strokeOpacity', 'strokePosition',
+     * 'strokeWeight', 'zIndex' and 'points'.
+     * @param {object} poly - Object to be used as base to create the google-map-poly element
+     * @returns {Element} - google-map-poly element
+     * @private
+     */
+    _createMapPolyElement: function (poly) {
+      var validKeys = ['closed', 'draggable', 'editable', 'fillColor', 'fillOpacity', 'geodesic', 'icons', 'strokeColor',
+        'strokeOpacity', 'strokePosition', 'strokeWeight', 'zIndex'];
+      var polyEl = this._createPolymerElement(poly, 'google-map-poly', validKeys);
+      if (poly.points) {
+        var pointEl;
+        var self = this;
+        poly.points.forEach(function (point) {
+          pointEl = self._createPolymerElement(point, 'google-map-point', ['latitude', 'longitude']);
+          Polymer.dom(polyEl).appendChild(pointEl);
+        });
+      }
+      return polyEl;
+    },
+
+    /**
+     * Create a marker element using an object 'baseElement', that can have the properties contain in 'validProperties'
+     * @param {object} baseElement - Object to be used to create the polymer element
+     * @param {string} tagName - Tag name of the polymer element to be created
+     * @param {string[]} validProperties - Valid properties for the polameer element
+     * @return {Element} - Created element
+     */
+    _createPolymerElement: function (baseElement, tagName, validProperties) {
+      var element = document.createElement(tagName);
+      validProperties.forEach(function (key) {
+        if (baseElement[key]) {
+          element[key] = baseElement[key];
+        }
+      });
+      return element;
+    },
+
+    /**
+     * Append a child to the map using the Polymer DOM
+     * @param child
+     * @private
+     */
+    _appendChildToTheMap: function (child) {
+      Polymer.dom(this.$$('#' + this.getId())).appendChild(child);
     }
   });
 }());

@@ -32,6 +32,23 @@
     var googleMap = document.querySelector('cubx-google-map');
     document.addEventListener('cifReady', function() {
         googleMap.setId('myCubxGoogleMap');
+        googleMap.setMapType('satellite');
+        googleMap.setZoom(10);
+
+
+        googleMap.setDirections([
+            {
+                startAddress: 'San Francisco',
+                endAddress: 'Mountain View',
+                travelMode: 'BICYCLING',
+                waypoints: [{location: 'Palo Alto'}, {location: 'San Mateo'}]
+            },
+            {
+                startAddress: 'Union City',
+                endAddress: 'Milpitas',
+                travelMode: 'DRIVING'
+            }
+        ]);
         googleMap.setMarkers([
             {
                 latitude: 37.779,
@@ -47,7 +64,21 @@
                 animation: 'DROP',
                 title: 'Marker Two'
             }
-        ])
+        ]);
+        googleMap.setPolys([
+            {
+                closed: true,
+                fillColor: 'red',
+                fillOpacity: 0.25,
+                strokeWeight: 1,
+                editable: true,
+                points: [
+                    {latitude: 37.779, longitude: -122.3892},
+                    {latitude: 37.804, longitude: -122.2711},
+                    {latitude: 37.386, longitude: -122.0837}
+                ]
+            }
+        ]);
     });
 </script>
 </body>

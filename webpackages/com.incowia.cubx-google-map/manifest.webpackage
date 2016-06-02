@@ -48,7 +48,7 @@
           },
           {
             "name": "docs",
-            "path": "/index.html",
+            "path": "/docs/index.html",
             "description": "Show the interface of this component."
           }
         ],
@@ -61,7 +61,12 @@
             ],
             "dependencies": [
               "cubx.core.rte@1.9.0/cubxpolymer/main",
-              "polymer-elements-for-1.2.3@1.0.0/google-map/main"
+              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map",
+              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-marker",
+              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-directions",
+              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-point",
+              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-poly",
+              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-search"
             ]
           }
         ],
@@ -91,6 +96,13 @@
             "value": "100%"
           },
           {
+            "slotId": "markers",
+            "type": "number",
+            "direction": [
+              "input"
+            ]
+          },
+          {
             "slotId": "directions",
             "type": "array",
             "direction": [
@@ -98,7 +110,7 @@
             ]
           },
           {
-            "slotId": "directions",
+            "slotId": "polys",
             "type": "array",
             "direction": [
               "input"
@@ -191,13 +203,6 @@
           {
             "slotId": "mapType",
             "type": "array",
-            "direction": [
-              "input"
-            ]
-          },
-          {
-            "slotId": "markers",
-            "type": "number",
             "direction": [
               "input"
             ]
