@@ -228,7 +228,7 @@
       }
       var self = this;
       markers.forEach(function (marker) {
-        self._appendChildToTheMap(self._createMarkerElement(marker));
+        self.addMarker(marker);
       });
     },
 
@@ -238,7 +238,7 @@
     modelDirectionsChanged: function (directions) {
       var self = this;
       directions.forEach(function (direction) {
-        self._appendChildToTheMap(self._createMapDirectionsElement(direction));
+        self.addMapDirections(direction);
       });
     },
 
@@ -248,7 +248,7 @@
     modelPolysChanged: function (polys) {
       var self = this;
       polys.forEach(function (poly) {
-        self._appendChildToTheMap(self._createMapPolyElement(poly));
+        self.addPoly(poly);
       });
     },
 
@@ -283,6 +283,15 @@
     addMapDirections: function (directions) {
       this.getMarkers().push(directions);
       this._appendChildToTheMap(this._createMapDirectionsElement(directions));
+    },
+
+    /**
+     * Add a new google-map-poly to the map.
+     * @param {object} poly - Object to be used as base to create the google-map-poly element to be added
+     */
+    addPoly: function (poly) {
+      this.getPolys().push(poly);
+      this._appendChildToTheMap(this._createMapPolyElement(poly));
     },
 
     /**
