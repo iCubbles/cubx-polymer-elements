@@ -281,7 +281,7 @@
      * @param {object} directions - Object to be used as base to create the google-map-directions element to be added
      */
     addMapDirections: function (directions) {
-      this.getMarkers().push(directions);
+      this.getDirections().push(directions);
       this._appendChildToTheMap(this._createMapDirectionsElement(directions));
     },
 
