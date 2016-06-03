@@ -268,11 +268,21 @@
     },
 
     /**
-     * Add a new marker to the map.
+     * Add a new google-map-marker to the map.
+     * @param {object} marker - Object to be used as base to create the google-map-marker element to be added
      */
     addMarker: function (marker) {
       this.getMarkers().push(marker);
       this._appendChildToTheMap(this._createMarkerElement(marker));
+    },
+
+    /**
+     * Add a new google-map-directions to the map.
+     * @param {object} directions - Object to be used as base to create the google-map-directions element to be added
+     */
+    addMapDirections: function (directions) {
+      this.getMarkers().push(directions);
+      this._appendChildToTheMap(this._createMapDirectionsElement(directions));
     },
 
     /**
