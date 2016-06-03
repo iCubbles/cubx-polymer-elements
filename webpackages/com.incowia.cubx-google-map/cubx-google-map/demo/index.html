@@ -33,9 +33,7 @@
     document.addEventListener('cifReady', function() {
         googleMap.setId('myCubxGoogleMap');
         googleMap.setMapType('satellite');
-        googleMap.setZoom(10);
-
-
+        googleMap.setFitToMarkers(true);
         googleMap.setDirections([
             {
                 startAddress: 'San Francisco',

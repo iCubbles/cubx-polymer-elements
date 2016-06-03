@@ -223,6 +223,9 @@
      * Observe the Cubbles-Component-Model: If value for slot 'markers', add the markers to the google-map
      */
     modelMarkersChanged: function (markers) {
+      if(this.getMarkers().length > 0) {
+        this.clearMarkers();
+      }
       var self = this;
       markers.forEach(function (marker) {
         self._appendChildToTheMap(self._createMarkerElement(marker));
@@ -252,7 +255,7 @@
     /**
      * Clear all markers from the map
      */
-    clear: function () {
+    clearMarkers: function () {
       this.$$('#' + this.getId()).clear();
     },
 
@@ -262,6 +265,14 @@
      */
     resize: function () {
       this.$$('#' + this.getId()).resize();
+    },
+
+    /**
+     * Add a new marker to the map.
+     */
+    addMarker: function (marker) {
+      this.getMarkers().push(marker);
+      this._appendChildToTheMap(this._createMarkerElement(marker));
     },
 
     /**

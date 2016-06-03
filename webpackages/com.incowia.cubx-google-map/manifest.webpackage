@@ -65,8 +65,7 @@
               "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-marker",
               "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-directions",
               "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-point",
-              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-poly",
-              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-search"
+              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-poly"
             ]
           }
         ],
@@ -100,21 +99,24 @@
             "type": "number",
             "direction": [
               "input"
-            ]
+            ],
+            "value": []
           },
           {
             "slotId": "directions",
             "type": "array",
             "direction": [
               "input"
-            ]
+            ],
+            "value": []
           },
           {
             "slotId": "polys",
             "type": "array",
             "direction": [
               "input"
-            ]
+            ],
+            "value": []
           },
           {
             "slotId": "additionalMapOptions",
