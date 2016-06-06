@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>&lt;cubx-google-map&gt;</title>
+
+    <script src="../../../cubx.core.rte@1.9.0/webcomponents/webcomponents-lite.js"></script>
+
+    <!--
+        Refer to the crc-loader artifact from a Cubbles-Base.
+        Take care: All other dependencies are expected to be available within the same Base!
+
+        Want to add a 'main' -script to be executed after the dependencies have been loaded?
+        If yes, add the following attribute: data-crc-main="js/my-script.js"
+    -->
+    <script src="../../../cubx.core.rte@1.9.0/crc-loader/js/main.js" data-crcinit-loadcif="true"></script>
+
+</head>
+<body>
+<!--
+    The cubbles client-runtime-container is bound to the next element.
+    Place Cubbles-Component there as child element.
+    Note: Currently there is only one element supported. This will change in future (@see PLAT-205).
+-->
+<h1>&lt;cubx-google-map&gt; Demo</h1>
+<div cubx-core-crc>
+     <cubx-google-map cubx-dependency="this/cubx-google-map/main"></cubx-google-map>
+</div>
+
+<script>
+    var googleMap = document.querySelector('cubx-google-map');
+    document.addEventListener('cifReady', function() {
+        googleMap.setId('bundesLaenderDE');
+        googleMap.setLatitude(51.3);
+        googleMap.setLongitude(9.8);
+        googleMap.setZoom(6);
+        openXML('polys.kml', loadPolys)
+    });
+
+    var openXML = function (path, callback) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                callback(xhttp);
+            }
+        };
+        xhttp.open("GET", path, true);
+        xhttp.send();
+    };
+    var loadPolys = function (xml) {
+        var xmlInfo = xml.responseXML;
+        var points;
+        var poly;
+        var point;
+        var coordinates;
+        for (var i = 0; i < xmlInfo.getElementsByTagName('Placemark').length; i++) {
+            points = [];
+            poly = xmlInfo.getElementsByTagName('Placemark')[i];
+            coordinates = poly.getElementsByTagName('coordinates')[0].firstChild.nodeValue.split(' ');
+            for (var j = 0; j < coordinates.length; j++) {
+                point = coordinates[j].split(',');
+                points.push({longitude: point[0], latitude: point[1]});
+            }
+            googleMap.addPoly({
+                closed: true,
+                fillColor: 'blue',
+                fillOpacity: 0.25,
+                strokeWeight: 1,
+                points: points
+            });
+        }
+    };
+</script>
+</body>
+</html>
