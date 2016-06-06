@@ -89,7 +89,7 @@
 		<SimpleData name="USE">2</SimpleData>
 		<SimpleData name="RS">08</SimpleData>
 		<SimpleData name="RS_ALT">080000000000</SimpleData>
-		<SimpleData name="GEN">Baden-W?rttemberg</SimpleData>
+		<SimpleData name="GEN">Baden-Wuerttemberg</SimpleData>
 		<SimpleData name="SHAPE_LENG">1298891.663208580110222</SimpleData>
 		<SimpleData name="SHAPE_AREA">35801397076.473503112792969</SimpleData>
 	</SchemaData></ExtendedData>
@@ -185,7 +185,7 @@
 		<SimpleData name="USE">2</SimpleData>
 		<SimpleData name="RS">16</SimpleData>
 		<SimpleData name="RS_ALT">160000000000</SimpleData>
-		<SimpleData name="GEN">Th?ringen</SimpleData>
+		<SimpleData name="GEN">Thueringen</SimpleData>
 		<SimpleData name="SHAPE_LENG">961942.737372842966579</SimpleData>
 		<SimpleData name="SHAPE_AREA">16178531941.241100311279297</SimpleData>
 	</SchemaData></ExtendedData>
