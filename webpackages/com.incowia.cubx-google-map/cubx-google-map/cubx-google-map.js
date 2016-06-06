@@ -239,6 +239,9 @@
      * Observe the Cubbles-Component-Model: If value for slot 'directions', add the directions to the google-map
      */
     modelDirectionsChanged: function (directions) {
+      if (this.getDirections().length > 0) {
+        this.setDirections([]);
+      }
       var self = this;
       directions.forEach(function (direction) {
         self.addMapDirections(direction);
@@ -249,6 +252,9 @@
      * Observe the Cubbles-Component-Model: If value for slot 'polys', add the polys to the google-map
      */
     modelPolysChanged: function (polys) {
+      if (this.getDirections().length > 0) {
+        this.setDirections([]);
+      }
       var self = this;
       polys.forEach(function (poly) {
         self.addPoly(poly);
@@ -295,6 +301,18 @@
     addPoly: function (poly) {
       this.getPolys().push(poly);
       this._appendChildToTheMap(this._createMapPolyElement(poly));
+    },
+
+    /**
+     * Remove the children whose element name is 'elementsName' from the map
+     * @param {string} elementsName - Name of the element (html tag name)
+     * @private
+     */
+    _removeChildren: function (elementsName) {
+      var elements = document.querySelectorAll(elementsName);
+      for (var i = 0; i < elements.length; i++) {
+       this.$$('#' + this.getId()).removeChild(elements[i]);
+      }
     },
 
     /**
