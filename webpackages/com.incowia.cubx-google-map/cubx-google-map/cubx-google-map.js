@@ -35,6 +35,9 @@
      */
     cubxReady: function () {
       this.cubxIsReady = true;
+      this.setMarkers([]);
+      this.setDirections([]);
+      this.setPolys([]);
     },
 
     /**

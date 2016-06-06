@@ -99,24 +99,21 @@
             "type": "number",
             "direction": [
               "input"
-            ],
-            "value": []
+            ]
           },
           {
             "slotId": "directions",
             "type": "array",
             "direction": [
               "input"
-            ],
-            "value": []
+            ]
           },
           {
             "slotId": "polys",
             "type": "array",
             "direction": [
               "input"
-            ],
-            "value": []
+            ]
           },
           {
             "slotId": "additionalMapOptions",
