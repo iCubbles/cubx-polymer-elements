@@ -282,7 +282,7 @@
      */
     addMarker: function (marker) {
       this.getMarkers().push(marker);
-      this._appendChildToTheMap(this._createMarkerElement(marker), this.getMarkers() - 1);
+      this._appendChildToTheMap(this._createMarkerElement(marker));
     },
 
     /**
@@ -291,7 +291,7 @@
      */
     addMapDirections: function (directions) {
       this.getDirections().push(directions);
-      this._appendChildToTheMap(this._createMapDirectionsElement(directions), this.getDirections() - 1);
+      this._appendChildToTheMap(this._createMapDirectionsElement(directions));
     },
 
     /**
@@ -300,20 +300,37 @@
      */
     addPoly: function (poly) {
       this.getPolys().push(poly);
-      this._appendChildToTheMap(this._createMapPolyElement(poly, this.getPolys().length - 1));
+      this._appendChildToTheMap(this._createMapPolyElement(poly));
+    },
+
+    removeDirections: function (id) {
+      for (var i = 0; i < this.getDirections().length; i++) {
+        if(this.getDirections()[i] && this.getDirections()[i].id && this.getDirections()[i].id === id) {
+          this._removeChildById(id);
+          this.getDirections().splice(i, 1);
+        }
+      }
+    },
+
+    removePoly: function (id) {
+      for (var i = 0; i < this.getPolys().length; i++) {
+        if(this.getPolys()[i] && this.getPolys()[i].id && this.getPolys()[i].id === id) {
+          this._removeChildById(id);
+          this.getPolys().splice(i, 1);
+        }
+      }
     },
 
     /**
      * Create a google-map-marker element using an object, that can have the following properties: 'icon', 'latitude',
      * 'longitude', 'title', 'zIndex', 'animation', 'draggable'
      * @param {object} marker - Object to be used as base to create the google-map-marker element
-     * @param {number} index - Index of the element within 'markers' list
      * @returns {Element} - google-map-marker element
      * @private
      */
-    _createMarkerElement: function (marker, index) {
-      var validKeys = ['icon', 'latitude', 'longitude', 'title', 'zIndex', 'animation', 'draggable'];
-      var markerEl = this._createPolymerElement(marker, 'google-map-marker', validKeys, index);
+    _createMarkerElement: function (marker) {
+      var validKeys = ['icon', 'latitude', 'longitude', 'title', 'zIndex', 'animation', 'draggable', 'id'];
+      var markerEl = this._createPolymerElement(marker, 'google-map-marker', validKeys);
       if (marker.title) {
         var titleSpan = document.createElement('span');
         titleSpan.textContent = marker.title;
@@ -326,13 +343,12 @@
      * Create a google-map-directions element using an object, that can have the following properties: 'startAddress',
      * 'endAddress', 'travelMode', 'wayPoints'
      * @param {object} directions - Object to be used as base to create the google-map-directions element
-     * @param {number} index - Index of the element within 'directions' list
      * @returns {Element} - google-map-directions element
      * @private
      */
-    _createMapDirectionsElement: function (directions, index) {
-      var validKeys = ['startAddress', 'endAddress', 'travelMode', 'waypoints'];
-      return this._createPolymerElement(directions, 'google-map-directions', validKeys, index);
+    _createMapDirectionsElement: function (directions) {
+      var validKeys = ['startAddress', 'endAddress', 'travelMode', 'waypoints', 'id'];
+      return this._createPolymerElement(directions, 'google-map-directions', validKeys);
     },
 
     /**
@@ -340,14 +356,13 @@
      * 'editable', 'fillColor', 'fillOpacity', 'geodesic', 'icons', 'strokeColor', 'strokeOpacity', 'strokePosition',
      * 'strokeWeight', 'zIndex' and 'points'.
      * @param {object} poly - Object to be used as base to create the google-map-poly element
-     * * @param {number} index - Index of the element within the 'polys' list
      * @returns {Element} - google-map-poly element
      * @private
      */
-    _createMapPolyElement: function (poly, index) {
+    _createMapPolyElement: function (poly) {
       var validKeys = ['closed', 'draggable', 'editable', 'fillColor', 'fillOpacity', 'geodesic', 'icons', 'strokeColor',
-        'strokeOpacity', 'strokePosition', 'strokeWeight', 'zIndex'];
-      var polyEl = this._createPolymerElement(poly, 'google-map-poly', validKeys, index);
+        'strokeOpacity', 'strokePosition', 'strokeWeight', 'zIndex', 'id'];
+      var polyEl = this._createPolymerElement(poly, 'google-map-poly', validKeys);
       if (poly.points) {
         var pointEl;
         var self = this;
@@ -364,19 +379,15 @@
      * @param {object} baseElement - Object to be used to create the polymer element
      * @param {string} tagName - Tag name of the polymer element to be created
      * @param {string[]} validProperties - Valid properties for the polymer element
-     * @param {number} index - Index of the element within the list where it is stored (markers, polys, directions)
      * @return {Element} - Created element
      */
-    _createPolymerElement: function (baseElement, tagName, validProperties, index) {
+    _createPolymerElement: function (baseElement, tagName, validProperties) {
       var element = document.createElement(tagName);
       validProperties.forEach(function (key) {
         if (baseElement[key]) {
           element[key] = baseElement[key];
         }
       });
-      if (index){
-        element.id = this.getId() + '_' + tagName + '_' + index;
-      }
       return element;
     },
 
