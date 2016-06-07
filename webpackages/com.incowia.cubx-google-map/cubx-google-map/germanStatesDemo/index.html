@@ -59,14 +59,12 @@
     var bundesLaenderPolys;
     // Open an xml file using its 'path' and a 'callback' function to be called after file is loaded
     var openXML = function (path, callback) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
-                callback(xhttp);
-            }
-        };
-        xhttp.open("GET", path, true);
-        xhttp.send();
+        $.ajax({
+            type: "GET",
+            url: path,
+            dataType: "xml",
+            success: callback
+        });
     };
 
     // Create checkbox with rigth 'text' and an associated poly in the map
@@ -86,8 +84,7 @@
     };
 
     // Load polys form the kml file
-    var loadPolys = function (kml) {
-        var xmlInfo = kml.responseXML;
+    var loadPolys = function (xmlInfo) {
         var points;
         var polyXml;
         var point;
@@ -111,7 +108,6 @@
                 points: points
             };
             document.querySelector('#checkBoxesDiv').appendChild(createCheckboxDiv(name, googleMap.addPoly(poly)));
-            console.log('hola' + i);
         }
 
         // Add event handlers to the checkboxes
