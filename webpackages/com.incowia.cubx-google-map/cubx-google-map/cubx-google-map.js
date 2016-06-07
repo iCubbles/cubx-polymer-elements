@@ -279,51 +279,60 @@
     /**
      * Add a new google-map-marker to the map.
      * @param {object} marker - Object to be used as base to create the google-map-marker element to be added
+     * @return {Element} - Added marker
      */
     addMarker: function (marker) {
-      this.getMarkers().push(marker);
-      this._appendChildToTheMap(this._createMarkerElement(marker));
+      var markerElement = this._createMarkerElement(marker);
+      this._appendElementToTheMap(markerElement, this.getMarkers());
+      if (!marker.id) {
+        marker.id = markerElement.id;
+      }
+      return marker;
     },
 
     /**
      * Add a new google-map-directions to the map.
      * @param {object} directions - Object to be used as base to create the google-map-directions element to be added
+     * @return {Element} - Added directions
      */
     addMapDirections: function (directions) {
-      this.getDirections().push(directions);
-      this._appendChildToTheMap(this._createMapDirectionsElement(directions));
+      var newDirections = this._createMapDirectionsElement(directions);
+      this._appendElementToTheMap(newDirections, this.getDirections());
+      if (!directions.id) {
+        directions.id = newDirections.id;
+      }
+      return directions;
     },
 
     /**
      * Add a new google-map-poly to the map.
      * @param {object} poly - Object to be used as base to create the google-map-poly element to be added
+     * @return {Element} - Added poly
      */
     addPoly: function (poly) {
-      this.getPolys().push(poly);
-      this._appendChildToTheMap(this._createMapPolyElement(poly));
+      var newPoly = this._createMapPolyElement(poly);
+      this._appendElementToTheMap(newPoly, this.getPolys());
+      if (!poly.id) {
+        poly.id = newPoly.id;
+      }
+      return poly;
     },
 
-    removeDirections: function (id) {
-      for (var i = 0; i < this.getDirections().length; i++) {
-        if(this.getDirections()[i] && this.getDirections()[i].id && this.getDirections()[i].id === id) {
-          this._removeChildById(id);
-          this.getDirections().splice(i, 1);
-        }
-      }
+    removeMarker: function (marker) {
+      this._removeChild(marker, this.getMarkers());
     },
 
-    removePoly: function (id) {
-      for (var i = 0; i < this.getPolys().length; i++) {
-        if(this.getPolys()[i] && this.getPolys()[i].id && this.getPolys()[i].id === id) {
-          this._removeChildById(id);
-          this.getPolys().splice(i, 1);
-        }
-      }
+    removeDirections: function (directions) {
+      this._removeChild(directions, this.getDirections());
+    },
+
+    removePoly: function (poly) {
+      this._removeChild(poly, this.getPolys());
     },
 
     /**
      * Create a google-map-marker element using an object, that can have the following properties: 'icon', 'latitude',
-     * 'longitude', 'title', 'zIndex', 'animation', 'draggable'
+     * 'longitude', 'title', 'zIndex', 'animation', 'draggable', 'id'
      * @param {object} marker - Object to be used as base to create the google-map-marker element
      * @returns {Element} - google-map-marker element
      * @private
@@ -341,7 +350,7 @@
 
     /**
      * Create a google-map-directions element using an object, that can have the following properties: 'startAddress',
-     * 'endAddress', 'travelMode', 'wayPoints'
+     * 'endAddress', 'travelMode', 'wayPoints', 'id'
      * @param {object} directions - Object to be used as base to create the google-map-directions element
      * @returns {Element} - google-map-directions element
      * @private
@@ -354,7 +363,7 @@
     /**
      * Create a google-map-poly element using an object, that can have the following properties: 'closed', 'draggable',
      * 'editable', 'fillColor', 'fillOpacity', 'geodesic', 'icons', 'strokeColor', 'strokeOpacity', 'strokePosition',
-     * 'strokeWeight', 'zIndex' and 'points'.
+     * 'strokeWeight', 'zIndex', 'points', 'id'.
      * @param {object} poly - Object to be used as base to create the google-map-poly element
      * @returns {Element} - google-map-poly element
      * @private
@@ -380,6 +389,7 @@
      * @param {string} tagName - Tag name of the polymer element to be created
      * @param {string[]} validProperties - Valid properties for the polymer element
      * @return {Element} - Created element
+     * @private
      */
     _createPolymerElement: function (baseElement, tagName, validProperties) {
       var element = document.createElement(tagName);
@@ -392,35 +402,42 @@
     },
 
     /**
-     * Append a child to the map using the Polymer DOM
-     * @param child
+     * Append a element to the map using the Polymer DOM
+     * @param {object} element - Child to be append to the map
      * @private
      */
-    _appendChildToTheMap: function (child) {
-      Polymer.dom(this.$$('#' + this.getId())).appendChild(child);
+    _appendElementToTheMap: function (element, elementList) {
+      if (!element.id) {
+        element.id = this.getId() + '_' + element.tagName + '_' + elementList.length;
+      }
+      elementList.push(element);
+      Polymer.dom(this.$$('#' + this.getId())).appendChild(element);
     },
 
     /**
-     * Remove the children whose element name is 'elementsName' from the map
-     * @param {string} elementsName - Name of the element (html tag name)
+     * Remove the children whose element name is 'tagName' from the map
+     * @param {string} tagName - Name of the element's tag
      * @private
      */
-    _removeChildren: function (elementsName) {
-      var elements = document.querySelectorAll(elementsName);
+    _removeChildren: function (tagName) {
+      var elements = document.querySelectorAll(tagName);
       for (var i = 0; i < elements.length; i++) {
         this.$$('#' + this.getId()).removeChild(elements[i]);
       }
     },
 
     /**
-     * Remove the children whose element id is 'elementsId' from the map
-     * @param {string} elementsId - Name of the element (html tag name)
+     * Remove the given child from the map and the lists that contains it (markers, directions, polys)
+     * @param {Element} element - Element to be removed
+     * @param {Element[]} elementList - List that contains the element (markers, directions, polys)
      * @private
      */
-    _removeChildById: function (elementsId) {
-      var element = document.querySelector('#' + elementsId);
-      if (element) {
-        this.$$('#' + this.getId()).removeChild(element)
+    _removeChild: function (element, elementList) {
+      for (var i = 0; i < elementList.length; i++) {
+        if(elementList[i].id && elementList[i].id === element.id) {
+          this.$$('#' + this.getId()).removeChild(document.querySelector('#' + element.id));
+          elementList.splice(i, 1);
+        }
       }
     }
   });

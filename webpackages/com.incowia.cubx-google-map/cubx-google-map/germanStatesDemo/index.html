@@ -108,11 +108,10 @@
                 fillColor: 'red',
                 fillOpacity: 0.25,
                 strokeWeight: 1,
-                points: points,
-                id: 'poly' + name
+                points: points
             };
-            googleMap.addPoly(poly);
-            document.querySelector('#checkBoxesDiv').appendChild(createCheckboxDiv(name, poly));
+            document.querySelector('#checkBoxesDiv').appendChild(createCheckboxDiv(name, googleMap.addPoly(poly)));
+            console.log('hola' + i);
         }
 
         // Add event handlers to the checkboxes
@@ -120,7 +119,7 @@
             if (this.checked) {
                 googleMap.addPoly(this.associatedPoly);
             } else {
-                googleMap.removePoly(this.associatedPoly.id);
+                googleMap.removePoly(this.associatedPoly);
             }
         });
     };
