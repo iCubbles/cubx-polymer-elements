@@ -97,8 +97,8 @@
     },
 
     /**
-     * Observe the Cubbles-Component-Model: If value for slot 'fitToMarkers' has changed, the fitToMarkers property of the
-     * google-map element is updated
+     * Observe the Cubbles-Component-Model: If value for slot 'fitToMarkers' has changed, the fitToMarkers property of
+     * the google-map element is updated
      */
     modelFitToMarkersChanged: function (fitToMarkers) {
       this.$$('#' + this.getId()).fitToMarkers = fitToMarkers;
@@ -121,7 +121,8 @@
     },
 
     /**
-     * Observe the Cubbles-Component-Model: If value for slot 'latitude' has changed, the latitude property of the google-map element is updated
+     * Observe the Cubbles-Component-Model: If value for slot 'latitude' has changed, the latitude property of the
+     * google-map element is updated
      */
     modelLatitudeChanged: function (latitude) {
       this.$$('#' + this.getId()).latitude = latitude;
@@ -200,7 +201,8 @@
     },
 
     /**
-     * Observe the Cubbles-Component-Model: If value for slot 'zoom' has changed, the zoom property of the google-map element is updated
+     * Observe the Cubbles-Component-Model: If value for slot 'zoom' has changed, the zoom property of the google-map
+     * element is updated
      */
     modelZoomChanged: function (zoom) {
       this.$$('#' + this.getId()).zoom = zoom;
@@ -318,14 +320,26 @@
       return poly;
     },
 
+    /**
+     * Remove a 'marker' from the map and its list
+     * @param {object} marker - Object that represents the 'marker' to be removed
+     */
     removeMarker: function (marker) {
       this._removeChild(marker, this.getMarkers());
     },
 
+    /**
+     * Remove a 'directions' from the map and its list
+     * @param {object} directions - Object that represents the 'directions' to be removed
+     */
     removeDirections: function (directions) {
       this._removeChild(directions, this.getDirections());
     },
 
+    /**
+     * Remove a 'poly' from the map and its list
+     * @param {object} poly - Object that represents the 'poly' to be removed
+     */
     removePoly: function (poly) {
       this._removeChild(poly, this.getPolys());
     },
@@ -404,6 +418,7 @@
     /**
      * Append a element to the map using the Polymer DOM
      * @param {object} element - Child to be append to the map
+     * @param {Element[]} elementList - List that contains the element (markers, directions, polys)
      * @private
      */
     _appendElementToTheMap: function (element, elementList) {
