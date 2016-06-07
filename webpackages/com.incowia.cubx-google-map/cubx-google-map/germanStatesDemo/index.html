@@ -3,9 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>&lt;cubx-google-map&gt;</title>
+    <title> German states using &lt;cubx-google-map&gt;</title>
 
     <script src="../../../cubx.core.rte@1.9.0/webcomponents/webcomponents-lite.js"></script>
+
+    <script>
+        window.cubx = {
+            CRCInit: {
+                rootDependencies: [
+                    "../../../bootstrap-3.3.5@1.0.3/bootstrap/main"
+                ]
+            }
+        }
+    </script>
+
     <!--
         Refer to the crc-loader artifact from a Cubbles-Base.
         Take care: All other dependencies are expected to be available within the same Base!
@@ -22,17 +33,31 @@
     Place Cubbles-Component there as child element.
     Note: Currently there is only one element supported. This will change in future (@see PLAT-205).
 -->
-<h1>&lt;cubx-google-map&gt; Demo</h1>
-<div id="checkBoxesDiv"></div>
-<div cubx-core-crc>
-    <cubx-google-map cubx-dependency="this/cubx-google-map/main"></cubx-google-map>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12"><h1>German states using &lt;cubx-google-map&gt;</h1></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2" id="checkBoxesDiv">
+            <input type="checkbox" id="selectAllCB" checked/><span>Select/Deselect all</span>
+        </div>
+        <div class="col-sm-10" cubx-core-crc>
+            <cubx-google-map cubx-dependency="this/cubx-google-map/main">
+                <cubx-core-init>
+                    <cubx-core-slot-init slot="id">"bundesLaenderDE"</cubx-core-slot-init>
+                    <cubx-core-slot-init slot="latitude">51.3</cubx-core-slot-init>
+                    <cubx-core-slot-init slot="longitude">10.3</cubx-core-slot-init>
+                    <cubx-core-slot-init slot="zoom">6</cubx-core-slot-init>
+                </cubx-core-init>
+            </cubx-google-map>
+        </div>
+    </div>
 </div>
 
 <script>
     var googleMap = document.querySelector('cubx-google-map');
     var bundesLaenderPolys;
-    var checkBoxes = [];
-    var colors = [];
+    // Open an xml file using its 'path' and a 'callback' function to be called after file is loaded
     var openXML = function (path, callback) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -44,18 +69,13 @@
         xhttp.send();
     };
 
+    // Create checkbox with rigth 'text' and an associated poly in the map
     var createCheckboxDiv = function (text, poly) {
         var checkBox = document.createElement('input');
         checkBox.type = 'checkbox';
         checkBox.checked = true;
         checkBox.associatedPoly = poly;
-        checkBox.addEventListener('change', function () {
-            if (this.checked) {
-                googleMap.addPoly(this.associatedPoly);
-            } else {
-                googleMap.removePoly(this.associatedPoly.id);
-            }
-        });
+        checkBox.className = 'bundeslLaenderCB';
         document.querySelector('#checkBoxesDiv').appendChild(checkBox);
         var label = document.createElement('span');
         label.appendChild(document.createTextNode(text));
@@ -65,8 +85,9 @@
         return checkBoxDiv;
     };
 
-    var loadPolys = function (xml) {
-        var xmlInfo = xml.responseXML;
+    // Load polys form the kml file
+    var loadPolys = function (kml) {
+        var xmlInfo = kml.responseXML;
         var points;
         var polyXml;
         var point;
@@ -93,14 +114,23 @@
             googleMap.addPoly(poly);
             document.querySelector('#checkBoxesDiv').appendChild(createCheckboxDiv(name, poly));
         }
+
+        // Add event handlers to the checkboxes
+        $('.bundeslLaenderCB').change(function () {
+            if (this.checked) {
+                googleMap.addPoly(this.associatedPoly);
+            } else {
+                googleMap.removePoly(this.associatedPoly.id);
+            }
+        });
     };
 
+    // Load polys from a kml file and add select all option
     document.addEventListener('cifReady', function() {
-        googleMap.setId('bundesLaenderDE');
-        googleMap.setLatitude(51.3);
-        googleMap.setLongitude(10.3);
-        googleMap.setZoom(6);
         openXML('polys.kml', loadPolys);
+        $('#selectAllCB').change(function () {
+            $('.bundeslLaenderCB').prop('checked', this.checked).change();
+        });
     });
 </script>
 </body>

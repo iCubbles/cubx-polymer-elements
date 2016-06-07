@@ -1,7 +1,7 @@
 {
   "name": "cubx-google-map",
   "groupId": "com.incowia",
-  "version": "0.1.0-SNAPSHOT",
+  "version": "1.0.0-SNAPSHOT",
   "modelVersion": "8.3.1",
   "docType": "webpackage",
   "author": {
@@ -44,7 +44,12 @@
           {
             "name": "demo",
             "path": "/demo/index.html",
-            "description": "Demo app..."
+            "description": "Demo app to show the use of cubx-google-map component"
+          },
+          {
+            "name": "German states demo",
+            "path": "/germanStatesDemo/index.html",
+            "description": "Demo app to show the use of polys in cubx-google-map component"
           },
           {
             "name": "docs",
