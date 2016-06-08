@@ -11,6 +11,9 @@
    */
   CubxPolymer({
     is: 'cubx-google-map',
+    _countPolys: 0,
+    _countDirections: 0,
+    _countMarkers: 0,
 
     /**
      * Manipulate an element’s local DOM when the element is created.
@@ -228,13 +231,14 @@
      * Observe the Cubbles-Component-Model: If value for slot 'markers', add the markers to the google-map
      */
     modelMarkersChanged: function (markers) {
-      this._removeChildren('google-map-markers');
+      this._removeChildrenByTagName('google-map-markers');
       for (var i = 0; i < this.getMarkers().length; i++) {
-        var markerElement = this._createMarkerElement(this.getMarkers()[i], i);
+        var markerElement = this._createMarkerElement(this.getMarkers()[i], this._countMarkers);
         if (!this.getMarkers()[i].id) {
           this.getMarkers()[i].id = markerElement.id;
         }
         this._appendElementToTheMap(markerElement);
+        this._countMarkers++;
       }
     },
 
@@ -242,13 +246,14 @@
      * Observe the Cubbles-Component-Model: If value for slot 'directions', add the directions to the google-map
      */
     modelDirectionsChanged: function (directions) {
-      this._removeChildren('google-map-directions');
+      this._removeChildrenByTagName('google-map-directions');
       for (var i = 0; i < this.getDirections().length; i++) {
-        var directionsElement = this._createMapDirectionsElement(this.getDirections()[i], i);
+        var directionsElement = this._createMapDirectionsElement(this.getDirections()[i], this._countDirections);
         if (!this.getDirections()[i].id) {
           this.getDirections()[i].id = directionsElement.id;
         }
         this._appendElementToTheMap(directionsElement);
+        this._countDirections++;
       }
     },
 
@@ -256,13 +261,14 @@
      * Observe the Cubbles-Component-Model: If value for slot 'polys', add the polys to the google-map
      */
     modelPolysChanged: function (polys) {
-      this._removeChildren('google-map-poly');
+      this._removeChildrenByTagName('google-map-poly');
       for (var i = 0; i < this.getPolys().length; i++) {
-        var polyElement = this._createMapPolyElement(this.getPolys()[i], i);
+        var polyElement = this._createMapPolyElement(this.getPolys()[i], this._countPolys);
         if (!this.getPolys()[i].id) {
           this.getPolys()[i].id = polyElement.id;
         }
         this._appendElementToTheMap(polyElement);
+        this._countPolys++;
       }
     },
 
@@ -280,7 +286,13 @@
      * @return {Element} - Added marker
      */
     addMarker: function (marker) {
-      return this._addElement(marker, this._createMarkerElement(marker, this.getMarkers().length), this.getMarkers());
+      var newMarker = this._addElement(
+        marker,
+        this._createMarkerElement(marker, this._countMarkers),
+        this.getMarkers()
+      );
+      this._countMarkers++;
+      return newMarker;
     },
 
     /**
@@ -289,11 +301,13 @@
      * @return {Element} - Added directions
      */
     addDirections: function (directions) {
-      return this._addElement(
+      var newDirections = this._addElement(
         directions,
-        this._createMapDirectionsElement(directions,
-        this.getDirections().length),
-        this.getDirections());
+        this._createMapDirectionsElement(directions, this._countDirections),
+        this.getDirections()
+      );
+      this._countDirections++;
+      return newDirections;
     },
 
     /**
@@ -302,7 +316,9 @@
      * @return {Element} - Added poly
      */
     addPoly: function (poly) {
-      return this._addElement(poly, this._createMapPolyElement(poly, this.getPolys().length), this.getPolys());
+      var newPoly = this._addElement(poly, this._createMapPolyElement(poly, this._countPolys), this.getPolys());
+      this._countPolys++;
+      return newPoly;
     },
 
     /**
@@ -310,7 +326,7 @@
      * @param {object} marker - Object that represents the 'marker' to be removed
      */
     removeMarker: function (marker) {
-      this._removeChild(marker, this.getMarkers());
+      this._removeElement(marker, this.getMarkers());
     },
 
     /**
@@ -318,7 +334,7 @@
      * @param {object} directions - Object that represents the 'directions' to be removed
      */
     removeDirections: function (directions) {
-      this._removeChild(directions, this.getDirections());
+      this._removeElement(directions, this.getDirections());
     },
 
     /**
@@ -326,7 +342,7 @@
      * @param {object} poly - Object that represents the 'poly' to be removed
      */
     removePoly: function (poly) {
-      this._removeChild(poly, this.getPolys());
+      this._removeElement(poly, this.getPolys());
     },
 
     /**
@@ -429,9 +445,9 @@
      * @private
      */
     _appendElementToTheMap: function (element) {
-      //Polymer.dom(this.$$('#' + this.getId())).appendChild(element);
-      element.map = this.$$('#' + this.getId()).map;
-      this.appendChild(element);
+      Polymer.dom(this.$$('#' + this.getId())).appendChild(element);
+      //element.map = this.$$('#' + this.getId()).map;
+      //this.appendChild(element);
     },
 
     /**
@@ -439,11 +455,10 @@
      * @param {string} tagName - Name of the element's tag
      * @private
      */
-    _removeChildren: function (tagName) {
+    _removeChildrenByTagName: function (tagName) {
       var elements = document.querySelectorAll(tagName);
       for (var i = 0; i < elements.length; i++) {
-        elements[i].map = null;
-        this.removeChild(elements[i]);
+        this._removeFromMap(elements[i]);
       }
     },
 
@@ -453,16 +468,27 @@
      * @param {object} elementList - List that contains the baseObject (markers, directions, polys)
      * @private
      */
-    _removeChild: function (baseObject, elementList) {
+    _removeElement: function (baseObject, elementList) {
       var element;
       for (var i = 0; i < elementList.length; i++) {
         if(elementList[i].id && elementList[i].id === baseObject.id) {
           element = document.querySelector('#' + baseObject.id);
-          element.map = null;
-          this.removeChild(element);
+          this._removeFromMap(element);
           elementList.splice(i, 1);
+          return;
         }
       }
+    },
+
+    /**
+     * Remove an element from its parent
+     * @param {Element} child - Dom element to be removed
+     * @private
+     */
+    _removeFromMap: function (child) {
+      child.map = null;
+      Polymer.dom(child.parentNode).removeChild(child);
     }
+
   });
 }());
