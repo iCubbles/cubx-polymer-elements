@@ -110,6 +110,56 @@
             ]
           },
           {
+            "slotId": "markerToAdd",
+            "type": "object",
+            "direction": [
+              "input"
+            ]
+          },
+          {
+            "slotId": "directionsToAdd",
+            "type": "object",
+            "direction": [
+              "input"
+            ]
+          },
+          {
+            "slotId": "polyToAdd",
+            "type": "object",
+            "direction": [
+              "input"
+            ]
+          },
+          {
+            "slotId": "markerToRemove",
+            "type": "object",
+            "direction": [
+              "input"
+            ]
+          },
+          {
+            "slotId": "directionsToRemove",
+            "type": "object",
+            "direction": [
+              "input"
+            ]
+          },
+          {
+            "slotId": "polyToRemove",
+            "type": "object",
+            "direction": [
+              "input",
+              "output"
+            ]
+          },
+          {
+            "slotId": "lastId",
+            "type": "object",
+            "direction": [
+              "output"
+            ]
+          },
+          {
             "slotId": "additionalMapOptions",
             "type": "number",
             "direction": [

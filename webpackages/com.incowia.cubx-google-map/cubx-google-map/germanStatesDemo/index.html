@@ -91,6 +91,7 @@
         var poly;
         var name;
         var coordinates;
+        googleMap.setPolys([]);
         for (var i = 0; i < xmlInfo.getElementsByTagName('Placemark').length; i++) {
             points = [];
             polyXml = xmlInfo.getElementsByTagName('Placemark')[i];
@@ -107,15 +108,17 @@
                 strokeWeight: 1,
                 points: points
             };
-            document.querySelector('#checkBoxesDiv').appendChild(createCheckboxDiv(name, googleMap.addPoly(poly)));
+            googleMap.setPolyToAdd(poly);
+            poly.id = googleMap.getLastId();
+            document.querySelector('#checkBoxesDiv').appendChild(createCheckboxDiv(name, poly));
         }
 
         // Add event handlers to the checkboxes
         $('.bundeslLaenderCB').change(function () {
             if (this.checked) {
-                googleMap.addPoly(this.associatedPoly);
+                googleMap.setPolyToAdd(this.associatedPoly);
             } else {
-                googleMap.removePoly(this.associatedPoly);
+                googleMap.setPolyToRemove(this.associatedPoly);
             }
         });
     };
