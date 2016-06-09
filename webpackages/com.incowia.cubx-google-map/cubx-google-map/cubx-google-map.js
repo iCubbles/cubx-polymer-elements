@@ -47,7 +47,7 @@
      * element's property with the same name is updated
      */
     modelAdditionalMapOptionsChanged: function (additionalMapOptions) {
-      this.$$('#' + this.getId()).additionalMapOptions = additionalMapOptions;
+      this.$$('google-map').additionalMapOptions = additionalMapOptions;
     },
 
     /**
@@ -55,7 +55,7 @@
      * google-map element is updated
      */
     modelApiKeyChanged: function (apiKey) {
-      this.$$('#' + this.getId()).apiKey = apiKey;
+      this.$$('google-map').apiKey = apiKey;
     },
 
     /**
@@ -63,7 +63,7 @@
      * the google-map element is updated
      */
     modelClickEventsChanged: function (clickEvents) {
-      this.$$('#' + this.getId()).clickEvents = clickEvents;
+      this.$$('google-map').clickEvents = clickEvents;
     },
 
     /**
@@ -71,7 +71,7 @@
      * google-map element is updated
      */
     modelClientIdChanged: function (clientId) {
-      this.$$('#' + this.getId()).clientId = clientId;
+      this.$$('google-map').clientId = clientId;
     },
 
     /**
@@ -79,7 +79,7 @@
      * property of the google-map element is updated
      */
     modelDisableDefaultUiChanged: function (disableDefaultUi) {
-      this.$$('#' + this.getId()).disableDefaultUi = disableDefaultUi;
+      this.$$('google-map').disableDefaultUi = disableDefaultUi;
     },
 
     /**
@@ -87,7 +87,7 @@
      * the google-map element is updated
      */
     modelDisableZoomChanged: function (disableZoom) {
-      this.$$('#' + this.getId()).disableZoom = disableZoom;
+      this.$$('google-map').disableZoom = disableZoom;
     },
 
     /**
@@ -95,7 +95,7 @@
      * the google-map element is updated
      */
     modelDragEventsChanged: function (dragEvents) {
-      this.$$('#' + this.getId()).dragEvents = dragEvents;
+      this.$$('google-map').dragEvents = dragEvents;
     },
 
     /**
@@ -103,7 +103,7 @@
      * the google-map element is updated
      */
     modelFitToMarkersChanged: function (fitToMarkers) {
-      this.$$('#' + this.getId()).fitToMarkers = fitToMarkers;
+      this.$$('google-map').fitToMarkers = fitToMarkers;
     },
 
     /**
@@ -111,7 +111,7 @@
      * google-map element is updated
      */
     modelKmlChanged: function (kml) {
-      this.$$('#' + this.getId()).kml = kml;
+      this.$$('google-map').kml = kml;
     },
 
     /**
@@ -119,7 +119,7 @@
      * google-map element is updated
      */
     modelLanguageChanged: function (language) {
-      this.$$('#' + this.getId()).language = language;
+      this.$$('google-map').language = language;
     },
 
     /**
@@ -127,7 +127,7 @@
      * google-map element is updated
      */
     modelLatitudeChanged: function (latitude) {
-      this.$$('#' + this.getId()).latitude = latitude;
+      this.$$('google-map').latitude = latitude;
     },
 
     /**
@@ -135,7 +135,7 @@
      * google-map element is updated
      */
     modelLongitudeChanged: function (longitude) {
-      this.$$('#' + this.getId()).longitude = longitude;
+      this.$$('google-map').longitude = longitude;
     },
 
     /**
@@ -143,7 +143,7 @@
      * google-map element is updated
      */
     modelMapTypeChanged: function (mapType) {
-      this.$$('#' + this.getId()).mapType = mapType;
+      this.$$('google-map').mapType = mapType;
     },
 
     /**
@@ -151,7 +151,7 @@
      * google-map element is updated
      */
     modelMaxZoomChanged: function (maxZoom) {
-      this.$$('#' + this.getId()).maxZoom = maxZoom;
+      this.$$('google-map').maxZoom = maxZoom;
     },
 
     /**
@@ -159,7 +159,7 @@
      * google-map element is updated
      */
     modelMinZoomChanged: function (minZoom) {
-      this.$$('#' + this.getId()).minZoom = minZoom;
+      this.$$('google-map').minZoom = minZoom;
     },
 
     /**
@@ -167,7 +167,7 @@
      * google-map element is updated
      */
     modelNoAutoTiltChanged: function (noAutoTilt) {
-      this.$$('#' + this.getId()).noAutoTilt = noAutoTilt;
+      this.$$('google-map').noAutoTilt = noAutoTilt;
     },
 
     /**
@@ -175,7 +175,7 @@
      * google-map element is updated
      */
     modelSignedInChanged: function (signedIn) {
-      this.$$('#' + this.getId()).signedIn = signedIn;
+      this.$$('google-map').signedIn = signedIn;
     },
 
     /**
@@ -183,7 +183,7 @@
      * property of the google-map element is updated
      */
     modelSingleInfoWindowChanged: function (singleInfoWindow) {
-      this.$$('#' + this.getId()).singleInfoWindow = singleInfoWindow;
+      this.$$('google-map').singleInfoWindow = singleInfoWindow;
     },
 
     /**
@@ -191,7 +191,7 @@
      * google-map element is updated
      */
     modelStylesChanged: function (styles) {
-      this.$$('#' + this.getId()).styles = styles;
+      this.$$('google-map').styles = styles;
     },
 
     /**
@@ -199,7 +199,7 @@
      * google-map element is updated
      */
     modelVersionChanged: function (version) {
-      this.$$('#' + this.getId()).version = version;
+      this.$$('google-map').version = version;
     },
 
     /**
@@ -207,7 +207,7 @@
      * element is updated
      */
     modelZoomChanged: function (zoom) {
-      this.$$('#' + this.getId()).zoom = zoom;
+      this.$$('google-map').zoom = zoom;
     },
 
     /**
@@ -215,7 +215,7 @@
      * element is updated
      */
     modelWidthChanged: function (width) {
-      this.$$('#' + this.getId()).style.width = width;
+      this.$$('google-map').style.width = width;
     },
 
     /**
@@ -223,7 +223,7 @@
      * element is updated
      */
     modelHeightChanged: function (height) {
-      this.$$('#' + this.getId()).style.height = height;
+      this.$$('google-map').style.height = height;
     },
 
     /**
@@ -321,7 +321,7 @@
      * it.
      */
     resize: function () {
-      this.$$('#' + this.getId()).resize();
+      this.$$('google-map').resize();
     },
 
     /**
@@ -490,7 +490,7 @@
      * @private
      */
     _appendElementToTheMap: function (element) {
-      Polymer.dom(this.$$('#' + this.getId())).appendChild(element);
+      Polymer.dom(this.$$('google-map')).appendChild(element);
     },
 
     /**
