@@ -289,7 +289,7 @@
      * Observe the Cubbles-Component-Model: If value for slot 'polyToAdd', add the polyToAdd to the google-map
      */
     modelPolyToAddChanged: function (polyToAdd) {
-      this._addPoly(polyToAdd)
+      this._addPoly(polyToAdd);
     },
 
     /**
@@ -421,7 +421,7 @@
         titleSpan.textContent = marker.title;
         markerEl.appendChild(titleSpan);
       }
-      return markerEl
+      return markerEl;
     },
 
     /**
@@ -514,7 +514,7 @@
     _removeElement: function (baseObject, elementList) {
       var element;
       for (var i = 0; i < elementList.length; i++) {
-        if(elementList[i].id && elementList[i].id === baseObject.id) {
+        if (elementList[i].id && elementList[i].id === baseObject.id) {
           element = document.querySelector('#' + baseObject.id);
           this._removeFromMap(element);
           elementList.splice(i, 1);
