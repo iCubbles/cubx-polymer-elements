@@ -25,6 +25,9 @@
      * Manipulate an element’s local DOM when the element is created and initialized.
      */
     ready: function () {
+      this.setMarkers([]);
+      this.setDirections([]);
+      this.setPolys([]);
     },
 
     /**
@@ -37,10 +40,6 @@
      * Manipulate an element’s local DOM when the cubbles framework is initialized and ready to work.
      */
     cubxReady: function () {
-      this.cubxIsReady = true;
-      this.setMarkers([]);
-      this.setDirections([]);
-      this.setPolys([]);
     },
 
     /**
@@ -276,7 +275,7 @@
      * Observe the Cubbles-Component-Model: If value for slot 'markerToAdd', add the markerToAdd to the google-map
      */
     modelMarkerToAddChanged: function (markerToAdd) {
-      this._addPoly(markerToAdd);
+      this._addMarker(markerToAdd);
     },
 
     /**
