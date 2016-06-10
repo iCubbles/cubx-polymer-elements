@@ -538,7 +538,8 @@
      */
     _removeFromMap: function (child) {
       child.map = null;
-      Polymer.dom(child.parentNode).removeChild(child);
+      var parent = Polymer.dom(child).parentNode;
+      Polymer.dom(parent).removeChild(child);
     }
 
   });
