@@ -5,8 +5,8 @@ This component wraps the `google maps` [Polymer elements](https://elements.polym
 [`google-map-directions`](https://elements.polymer-project.org/elements/google-map?active=google-map-directions) and
 [`google-map-poly`](https://github.com/GoogleWebComponents/google-map/blob/master/google-map-poly.html). 
 
-This component exposes the `google-map` properties as input slots, excepting those which are _read only_ properties. Additionaly,
-this component icnludes the following input slots: 
+This component exposes the `google-map` properties as input slots, excepting those which are _read only_ properties. Additionally,
+this component includes the following input slots: 
 
 1. **id**: id for the `google-map` contained by this component.
 2. **height**: height for the `google-map` contained by this component.
@@ -23,7 +23,7 @@ this component icnludes the following input slots:
 13. **lastId**: last generated id (generated when the id of an element to be added is not provided).
 
 ## Markers, Directions and Polys
-Markers, directions and polys of the map can be added to the map using the `markers`, `directions` and `polys` input slots. Additionally, they can be added inidividually using the `markerToAdd`, `directionsToAdd` and `addPolys(poly)` input slots. They can also be removed individually using the `markerToRemove`, `directionsToRemove` and `polyToRemove` input slots. 
+Markers, directions and polys of the map can be added to the map using the `markers`, `directions` and `polys` input slots. Additionally, they can be added inidividually using the `markerToAdd`, `directionsToAdd` and `polyToAdd` input slots. They can be also removed individually using the `markerToRemove`, `directionsToRemove` and `polyToRemove` input slots. 
 
 | Object     | Properties                                                                                                                                                           |
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -31,15 +31,15 @@ Markers, directions and polys of the map can be added to the map using the `mark
 | Directions | `startAddress`, `endAddress`, `travelMode`, `waypoints` and `id`                                                                                                     |
 | Poly       | `closed`, `draggable`, `editable`, `fillColor`, `fillOpacity`, `geodesic`, `icons`, `strokeColor`, `strokeOpacity`, `strokePosition`, `strokeWeight`, `zIndex`, `id` |
 
-The porperties above (excepting`id`) correspond to properties defined for [`google-map-marker`](https://elements.polymer-project.org/elements/google-map?active=google-map-marker),
+The properties above (excepting`id`) correspond to properties defined for [`google-map-marker`](https://elements.polymer-project.org/elements/google-map?active=google-map-marker),
 [`google-map-directions`](https://elements.polymer-project.org/elements/google-map?active=google-map-directions) and
 [`google-map-poly`](https://github.com/GoogleWebComponents/google-map/blob/master/google-map-poly.html). 
 
 When the `id` is not provided, it will be generated during addition. The last generated id can be accessed using the `lastId` slot.
 
 ## Use
-The html file should contain the component, which is here initialized using the `<cubx-core-slot-init>` tag (available from 
-_cubx.core.rte version_ 1.9.0).
+The html file should contain the component, which can be optionally initialized using the `<cubx-core-slot-init>` tag (available from 
+_cubx.core.rte version_ 1.9.0) as follows:
 
 ```html
 <div cubx-core-crc>
@@ -53,7 +53,7 @@ _cubx.core.rte version_ 1.9.0).
 </div>
 ```
 
-And the component can be also manipulated from javascript as follows:
+And the component can be also manipulated from Javascript as follows:
 
 ```javascript
 var googleMapComponent = document.querySelector('cubx-google-map');
@@ -99,6 +99,6 @@ The source code is available
 [here](https://github.com/iCubbles/cubx-polymer-elements/blob/master/webpackages/com.incowia.cubx-google-map/cubx-google-map/germanStatesDemo/index.html).
 
 2.1. [Here](https://cubbles.world/sandbox/com.incowia.demo.cubx-polymer-elements-demos@0.1.0-SNAPSHOT/german-states/demo/index.html) 
-the same Demo as Cubble component using the [`cubx-checkbox` component](https://github.com/iCubbles/base-html-components). 
+the same Demo as Cubbles component using the [`cubx-checkbox` component](https://github.com/iCubbles/base-html-components). 
 The source code is available 
 [here](https://github.com/iCubbles/cubx-polymer-elements-demos/tree/master/webpackages/com.incowia.demo.cubx-polymer-elements-demos). 
