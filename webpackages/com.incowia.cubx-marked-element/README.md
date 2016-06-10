@@ -1,11 +1,12 @@
 # cubx-marked-element component
-This component wraps the [`marked-element`](https://elements.polymer-project.org/elements/marked-element) Polymer element. 
-`cubx-marked-element` exposes the `marked-element` properties as slots. It includes the following additional input slot: 
+This component wraps the [`marked-element`](https://elements.polymer-project.org/elements/marked-element) Polymer element.
+`cubx-marked-element` exposes the `marked-element` properties as slots. It includes the following additional slots:
 
 1. **markdownUrl**: url of a MD file whose content will be displayed by the element.
+2. **id**: id attribute for the marked-element
 
 ## Use
-The html file should contain the component, which optionally can be initialized using the `<cubx-core-slot-init>` tag (available from 
+The html file should contain the component, which optionally can be initialized using the `<cubx-core-slot-init>` tag (available from
 _cubx.core.rte version_ 1.9.0) as follows:
 
 ```html
@@ -27,6 +28,6 @@ cubxMarkedElement.setMarkdownUrl('https://raw.githubusercontent.com/iCubbles/cub
 ```
 
 ## Demo
-1. [Here](https://cubbles.world/sandbox/com.incowia.cubx-marked-element@0.1.0-SNAPSHOT/cubx-marked-element/demo/index.html) 
+1. [Here](https://cubbles.world/sandbox/com.incowia.cubx-marked-element@0.1.0-SNAPSHOT/cubx-marked-element/demo/index.html)
 a simple demo is available. And its source code can be found
 [here](https://github.com/iCubbles/cubx-polymer-elements/tree/master/webpackages/com.incowia.cubx-marked-element).

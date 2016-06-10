@@ -56,6 +56,13 @@
         ],
         "slots": [
           {
+            "slotId": "id",
+            "type": "string",
+            "direction": [
+              "input"
+            ]
+          },
+          {
             "slotId": "markdownUrl",
             "type": "string",
             "direction": [
