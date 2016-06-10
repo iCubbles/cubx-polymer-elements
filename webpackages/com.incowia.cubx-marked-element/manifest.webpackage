@@ -1,0 +1,100 @@
+{
+  "name": "cubx-marked-element",
+  "groupId": "com.incowia",
+  "version": "0.1.0-SNAPSHOT",
+  "modelVersion": "8.3.1",
+  "docType": "webpackage",
+  "author": {
+    "name": "Edwin Gamboa",
+    "email": "edwin.gamboa@incowia.com"
+  },
+  "license": "MIT",
+  "keywords": [],
+  "man": [],
+  "artifacts": {
+    "apps": [
+      {
+        "artifactId": "docs",
+        "description": "Generated webpackage documentation.",
+        "runnables": [
+          {
+            "name": "docs",
+            "path": "/index.html",
+            "description": "Show the interface of this component."
+          }
+        ]
+      }
+    ],
+    "elementaryComponents": [
+      {
+        "artifactId": "cubx-marked-element",
+        "description": "Cubbles wrapper for the marked-element polymer element",
+        "runnables": [
+          {
+            "name": "demo",
+            "path": "/demo/index.html",
+            "description": "Demo app..."
+          },
+          {
+            "name": "docs",
+            "path": "/docs/index.html",
+            "description": "Show the interface of this component."
+          }
+        ],
+        "endpoints": [
+          {
+            "endpointId": "main",
+            "description": "This is recommended for you use with webcomponents.",
+            "resources": [
+              "cubx-marked-element.html"
+            ],
+            "dependencies": [
+              "cubx.core.rte@1.9.0/cubxpolymer/main",
+              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/marked-element/main",
+              "highlightjs-9.3.0@1.0.4/highlightjs/default-html-import"
+            ]
+          }
+        ],
+        "slots": [
+          {
+            "slotId": "markdown",
+            "type": "string",
+            "direction": [
+              "input"
+            ]
+          },
+          {
+            "slotId": "pedantic",
+            "type": "boolean",
+            "direction": [
+              "input"
+            ]
+          },
+          {
+            "slotId": "sanitize",
+            "type": "boolean",
+            "direction": [
+              "input"
+            ]
+          },
+          {
+            "slotId": "smartypants",
+            "type": "boolean",
+            "direction": [
+              "input"
+            ]
+          },
+          {
+            "slotId": "outputElement",
+            "type": "object",
+            "direction": [
+              "output"
+            ]
+          }
+        ]
+      }
+    ],
+    "compoundComponents": [],
+    "utilities": []
+  }
+}
