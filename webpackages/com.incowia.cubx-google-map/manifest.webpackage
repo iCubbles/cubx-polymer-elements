@@ -55,11 +55,11 @@
             ],
             "dependencies": [
               "cubx.core.rte@1.9.0/cubxpolymer/main",
-              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map",
-              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-marker",
-              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-directions",
-              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-point",
-              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/google-map/google-map-poly"
+              "polymer-elements-for-1.2.3@1.0.1/google-map/google-map",
+              "polymer-elements-for-1.2.3@1.0.1/google-map/google-map-marker",
+              "polymer-elements-for-1.2.3@1.0.1/google-map/google-map-directions",
+              "polymer-elements-for-1.2.3@1.0.1/google-map/google-map-point",
+              "polymer-elements-for-1.2.3@1.0.1/google-map/google-map-poly"
             ]
           }
         ],

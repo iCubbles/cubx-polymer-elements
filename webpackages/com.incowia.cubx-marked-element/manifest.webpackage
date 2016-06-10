@@ -50,7 +50,7 @@
             ],
             "dependencies": [
               "cubx.core.rte@1.9.0/cubxpolymer/main",
-              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/marked-element/main"
+              "polymer-elements-for-1.2.3@1.0.1/marked-element/main"
             ]
           }
         ],

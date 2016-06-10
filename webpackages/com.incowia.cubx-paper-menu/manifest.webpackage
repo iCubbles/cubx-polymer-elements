@@ -50,8 +50,9 @@
             ],
             "dependencies": [
               "cubx.core.rte@1.9.0/cubxpolymer/main",
-              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/paper-menu/main",
-              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/paper-item/main"
+              "polymer-elements-for-1.2.3@1.0.1/paper-menu/paper-menu",
+              "polymer-elements-for-1.2.3@1.0.1/paper-item/main",
+              "polymer-elements-for-1.2.3@1.0.1/paper-menu/paper-submenu"
             ]
           }
         ],
