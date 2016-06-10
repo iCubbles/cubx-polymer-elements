@@ -3,9 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>app</title>
+    <title>&lt;cubx-marked-element&gt; Demo</title>
 
     <script src="../../../cubx.core.rte@1.9.0/webcomponents/webcomponents-lite.js"></script>
+
+    <script>
+        window.cubx = {
+            CRCInit: {
+                rootDependencies: [
+                    "../../../bootstrap-3.3.5@1.0.3/bootstrap/main"
+                ]
+            }
+        }
+    </script>
 
     <!--
         Refer to the crc-loader artifact from a Cubbles-Base.
@@ -19,13 +29,49 @@
 </head>
 <body>
 
-<div cubx-core-crc>
-     <cubx-marked-element cubx-dependency="this/cubx-marked-element/main">
-         <cubx-core-init>
-             <cubx-core-slot-init slot="markdown">"`Markdown` is _awesome_!"</cubx-core-slot-init>
-         </cubx-core-init>
-     </cubx-marked-element>
+<div class="container">
+    <div class="row">
+        <div class="alert alert-danger fade in" id="alertD" style="display: none">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Error!</strong> <span id="alertDText"></span>.
+        </div>
+    </div>
+    <div class="row">
+        <h1>&lt;cubx-marked-element&gt; Demo</h1>
+    </div>
+    <div class="row">
+        <label for="urlTF" >File url: </label>
+        <input id="urlTF"
+               style="width: 80%"
+               value="https://raw.githubusercontent.com/iCubbles/cubx-polymer-elements/master/webpackages/com.incowia.cubx-marked-element/README.md"/>
+        <input type="submit" value="Load" id="loadB" class="btn btn-primary" disabled>
+    </div>
+    <div class="row panel panel-default">
+        <div cubx-core-crc class="col-sm-12">
+            <cubx-marked-element cubx-dependency="this/cubx-marked-element/main"></cubx-marked-element>
+        </div>
+    </div>
 </div>
 
+<script>
+    var loadB = document.querySelector('#loadB');
+    var urlTF = document.querySelector('#urlTF');
+    var alertD = document.querySelector('#alertD');
+    var alertDText = document.querySelector('#alertDText');
+    var cubxMarkedElement = document.querySelector('cubx-marked-element');
+
+    document.addEventListener('cifReady', function () {
+        loadB.removeAttribute('disabled');
+    });
+
+    loadB.addEventListener('click', function () {
+        if (urlTF.value !== '') {
+            cubxMarkedElement.setMarkdownUrl(urlTF.value);
+        } else {
+            alertDText.textContent = 'Please fill out the File url field';
+            alertD.style.display = 'block';
+        }
+    });
+</script>
 </body>
 </html>
