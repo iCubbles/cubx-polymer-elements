@@ -50,8 +50,7 @@
             ],
             "dependencies": [
               "cubx.core.rte@1.9.0/cubxpolymer/main",
-              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/marked-element/main",
-              "highlightjs-9.3.0@1.0.4/highlightjs/default-html-import"
+              "polymer-elements-for-1.2.3@1.0.1-SNAPSHOT/marked-element/main"
             ]
           }
         ],
