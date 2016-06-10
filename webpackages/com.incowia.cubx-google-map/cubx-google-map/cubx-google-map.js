@@ -43,6 +43,14 @@
     },
 
     /**
+     * Observe the Cubbles-Component-Model: If value for slot 'id' has changed, the google-map
+     * element's property with the same name is updated
+     */
+    modelIdChanged: function (id) {
+      this.$$('google-map').id = id;
+    },
+
+    /**
      * Observe the Cubbles-Component-Model: If value for slot 'additionalMapOptions' has changed, the google-map
      * element's property with the same name is updated
      */
