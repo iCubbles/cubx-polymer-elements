@@ -1,3 +1,4 @@
+/*global XMLHttpRequest*/
 (function () {
   'use strict';
   /**
@@ -62,6 +63,25 @@
      */
     modelSmartypantsChanged: function (smartypants) {
       this.$$('marked-element').smartypants = smartypants;
+    },
+
+    /**
+     *  Observe the Cubbles-Component-Model: If value for slot 'markdownUrl' has changed.
+     */
+    modelMarkdownUrlChanged: function (markdownUrl) {
+      this._loadMarkDown(markdownUrl);
+    },
+
+    _loadMarkDown: function (markdownUrl) {
+      var self = this;
+      var xhttp = new XMLHttpRequest();
+      xhttp.open('GET', markdownUrl, true);
+      xhttp.onreadystatechange = function () {
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
+          self.setMarkdown(xhttp.responseText);
+        }
+      };
+      xhttp.send();
     }
   });
 }());
