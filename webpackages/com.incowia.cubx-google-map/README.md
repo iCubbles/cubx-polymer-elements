@@ -1,9 +1,6 @@
 # cubx-google-map component
-This component wraps the `google maps` [Polymer elements](https://elements.polymer-project.org/): 
-[`google-map`](https://elements.polymer-project.org/elements/google-map), 
-[`google-map-marker`](https://elements.polymer-project.org/elements/google-map?active=google-map-marker),
-[`google-map-directions`](https://elements.polymer-project.org/elements/google-map?active=google-map-directions) and
-[`google-map-poly`](https://github.com/GoogleWebComponents/google-map/blob/master/google-map-poly.html). 
+This component wraps the [`google-map`](https://elements.polymer-project.org/elements/google-map),using the [`google-map-marker`](https://elements.polymer-project.org/elements/google-map?active=google-map-marker),
+[`google-map-directions`](https://elements.polymer-project.org/elements/google-map?active=google-map-directions) and [`google-map-poly`](https://github.com/GoogleWebComponents/google-map/blob/master/google-map-poly.html) elements. 
 
 This component exposes the `google-map` properties as input slots, excepting those which are _read only_ properties. Additionally,
 this component includes the following input slots: 
@@ -23,7 +20,7 @@ this component includes the following input slots:
 13. **lastId**: last generated id (generated when the id of an element to be added is not provided).
 
 ## Markers, Directions and Polys
-Markers, directions and polys of the map can be added to the map using the `markers`, `directions` and `polys` input slots. Additionally, they can be added inidividually using the `markerToAdd`, `directionsToAdd` and `polyToAdd` input slots. They can be also removed individually using the `markerToRemove`, `directionsToRemove` and `polyToRemove` input slots. 
+Markers, directions and polys of the map can be added to the map using the `markers`, `directions` and `polys` input slots. Additionally, they can be added individually using the `markerToAdd`, `directionsToAdd` and `polyToAdd` input slots. They can be also removed individually using the `markerToRemove`, `directionsToRemove` and `polyToRemove` input slots. 
 
 | Object     | Properties                                                                                                                                                           |
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -36,6 +33,9 @@ The properties above (excepting`id`) correspond to properties defined for [`goog
 [`google-map-poly`](https://github.com/GoogleWebComponents/google-map/blob/master/google-map-poly.html). 
 
 When the `id` is not provided, it will be generated during addition. The last generated id can be accessed using the `lastId` slot.
+
+## Docs
+The generated documentation for this component is available [here](https://cubbles.world/sandbox/com.incowia.cubx-google-map@1.0.0-SNAPSHOT/cubx-google-map/docs/index.html)
 
 ## Use
 The html file should contain the component, which can be optionally initialized using the `<cubx-core-slot-init>` tag (available from 
@@ -80,17 +80,17 @@ googleMapComponent.setMarkers([
 var marker = {
     latitude: 37.979,
     longitude: -122.6892,
-    title: 'Marker Three',
-    id: 'myMarker3'
+    title: 'Marker Three'
 }
 googleMapComponent.setMarkerToAdd(marker);
+marker.id = googleMapComponent.getLatsId();
 ...
 googleMapComponent.setMarkerToRemove(marker);
 ```
 
 ## Demos
 1. [Here](https://cubbles.world/sandbox/com.incowia.cubx-google-map@1.0.0-SNAPSHOT/cubx-google-map/demo/index.html) 
-a simple demo is avaliable. And its source code can be found
+a simple demo is available. And its source code can be found
 [here](https://github.com/iCubbles/cubx-polymer-elements/blob/master/webpackages/com.incowia.cubx-google-map/cubx-google-map/demo/index.html).
 
 2. [Here](https://cubbles.world/sandbox/com.incowia.cubx-google-map@1.0.0-SNAPSHOT/cubx-google-map/germanStatesDemo/index.html) 
