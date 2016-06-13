@@ -89,16 +89,11 @@ googleMapComponent.setMarkerToRemove(marker);
 ```
 
 ## Demos
-1. [Here](https://cubbles.world/sandbox/com.incowia.cubx-google-map@1.0.0-SNAPSHOT/cubx-google-map/demo/index.html) 
-a simple demo is available. And its source code can be found
-[here](https://github.com/iCubbles/cubx-polymer-elements/blob/master/webpackages/com.incowia.cubx-google-map/cubx-google-map/demo/index.html).
+1. [**cubx-google-map**](https://cubbles.world/sandbox/com.incowia.cubx-google-map@1.0.0-SNAPSHOT/cubx-google-map/demo/index.html): 
+a simple demo to show the use of `cubx-google-map`. Links: 
+[Sources](https://github.com/iCubbles/cubx-polymer-elements/blob/master/webpackages/com.incowia.cubx-google-map/cubx-google-map/demo/index.html).
 
-2. [Here](https://cubbles.world/sandbox/com.incowia.cubx-google-map@1.0.0-SNAPSHOT/cubx-google-map/germanStatesDemo/index.html) 
-a demo that uses Polys (data loaded from a kml file) to visualize Germany's states can be found. 
-The source code is available 
-[here](https://github.com/iCubbles/cubx-polymer-elements/blob/master/webpackages/com.incowia.cubx-google-map/cubx-google-map/germanStatesDemo/index.html).
+2. [**German States**](https://cubbles.world/sandbox/com.incowia.cubx-google-map@1.0.0-SNAPSHOT/cubx-google-map/germanStatesDemo/index.html): a demo that uses Polys (data loaded from a kml file) to visualize Germany's states. 
+Links: [Sources](https://github.com/iCubbles/cubx-polymer-elements/blob/master/webpackages/com.incowia.cubx-google-map/cubx-google-map/germanStatesDemo/index.html).
 
-2.1. [Here](https://cubbles.world/sandbox/com.incowia.demo.cubx-polymer-elements-demos@0.1.0-SNAPSHOT/german-states/demo/index.html) 
-the same Demo as Cubbles component using the [`cubx-checkbox` component](https://github.com/iCubbles/base-html-components). 
-The source code is available 
-[here](https://github.com/iCubbles/cubx-polymer-elements-demos/tree/master/webpackages/com.incowia.demo.cubx-polymer-elements-demos). 
+ * [**German States (Only Cubbles)**](https://cubbles.world/sandbox/com.incowia.demo.cubx-polymer-elements-demos@0.1.0-SNAPSHOT/german-states/demo/index.html) the same demo from above but this time as a compound component using the [`cubx-checkbox` component](https://github.com/iCubbles/base-html-components) and the `cubx-google-map` as memebers. Links: [Sources](https://github.com/iCubbles/cubx-polymer-elements-demos/tree/master/webpackages/com.incowia.demo.cubx-polymer-elements-demos), [Compound component docs](https://cubbles.world/sandbox/com.incowia.demo.cubx-polymer-elements-demos@0.1.0-SNAPSHOT/german-states/docs/index.html). 
