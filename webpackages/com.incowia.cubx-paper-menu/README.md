@@ -90,6 +90,5 @@ paperMenuComponent.setMenuItemToRemove(menuItem);
 ```
 
 ## Demos
-1. [Here](https://cubbles.world/sandbox/com.incowia.cubx-paper-menu@0.1.0-SNAPSHOT/cubx-paper-menu/demo/index.html) 
-a simple demo is available. And its source code can be found
-[here](https://github.com/iCubbles/cubx-polymer-elements/tree/master/webpackages/com.incowia.cubx-paper-menu).
+1. [**cubx-paper-menu**](https://cubbles.world/sandbox/com.incowia.cubx-paper-menu@0.1.0-SNAPSHOT/cubx-paper-menu/demo/index.html): Simple demo show the use `cubx-paper-menu`. Links: [Sources](https://github.com/iCubbles/cubx-polymer-elements/tree/master/webpackages/com.incowia.cubx-paper-menu)
+2. [**World places**](https://cubbles.world/sandbox/com.incowia.demo.cubx-polymer-elements-demos@0.1.0-SNAPSHOT/world-places/demo/index.html): Demo showing a compound component that has a `cubx-paper-menu` as a member, to add some markers of differente cities of the world to a `cubx-google-map` component. Links: [Sources](https://github.com/iCubbles/cubx-polymer-elements-demos/tree/master/webpackages/com.incowia.demo.cubx-polymer-elements-demos), [Compound component docs](https://cubbles.world/sandbox/com.incowia.demo.cubx-polymer-elements-demos@0.1.0-SNAPSHOT/world-places/docs/index.html)
