@@ -22,8 +22,14 @@
 <div cubx-core-crc>
      <cubx-paper-menu cubx-dependency="this/cubx-paper-menu/main">
          <cubx-core-init>
-             <cubx-core-slot-init slot="items">
-                 [{"textContent": "Item 1"}, {"textContent": "Item 2"}, {"textContent": "Item 3"}, {"textContent": "Item 4"}]
+             <cubx-core-slot-init slot="menuItems">
+                 [{"textContent": "Item 1"},
+                 {"triggerItem": {"textContent": "Trigger Item Submenu 1"},
+                 "menuItems": [{"textContent": "Item 2.1"}, {"textContent": "Item 2.2"},
+                 {"triggerItem": {"textContent": "Trigger Item Submenu 1.1"},
+                 "menuItems": [{"textContent": "Item 2.1.1"}]}]},
+                 {"textContent": "Item 3"},
+                 {"textContent": "Item 4"}]
              </cubx-core-slot-init>
          </cubx-core-init>
      </cubx-paper-menu>

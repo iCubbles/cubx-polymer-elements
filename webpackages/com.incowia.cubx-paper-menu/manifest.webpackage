@@ -66,7 +66,7 @@
             "value": "cubx-paper-menu"
           },
           {
-            "slotId": "items",
+            "slotId": "menuItems",
             "type": "array",
             "direction": [
               "input",
@@ -74,14 +74,14 @@
             ]
           },
           {
-            "slotId": "itemToAdd",
+            "slotId": "menuItemToAdd",
             "type": "object",
             "direction": [
               "input"
             ]
           },
           {
-            "slotId": "itemToRemove",
+            "slotId": "menuItemToRemove",
             "type": "object",
             "direction": [
               "input"
@@ -113,7 +113,8 @@
             "type": "string",
             "direction": [
               "input"
-            ]
+            ],
+            "value": "id"
           },
           {
             "slotId": "fallbackSelection",
