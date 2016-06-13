@@ -37,13 +37,13 @@ When the `id` is not provided, it will be generated during addition. The last ge
 
 ###Examples: 
 
-1. Item
+- Item
 
 ```JSON
 {"textContent": "Item 1"}
 ```
 
-2. MenuItem
+- MenuItem
 ```JSON
 {"triggerItem": {"textContent": "Trigger Item Submenu 1"},
  "menuItems": [
