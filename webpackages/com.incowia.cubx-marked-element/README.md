@@ -31,6 +31,4 @@ cubxMarkedElement.setMarkdownUrl('https://raw.githubusercontent.com/iCubbles/cub
 ```
 
 ## Demo
-1. [Here](https://cubbles.world/sandbox/com.incowia.cubx-marked-element@0.1.0-SNAPSHOT/cubx-marked-element/demo/index.html)
-a simple demo is available. And its source code can be found
-[here](https://github.com/iCubbles/cubx-polymer-elements/tree/master/webpackages/com.incowia.cubx-marked-element).
+1. [**cubx-marked-element**](https://cubbles.world/sandbox/com.incowia.cubx-marked-element@0.1.0-SNAPSHOT/cubx-marked-element/demo/index.html): A simple demo shwoing the use of `cubx-marked-element`. Links: [Sources](https://github.com/iCubbles/cubx-polymer-elements/tree/master/webpackages/com.incowia.cubx-marked-element).
