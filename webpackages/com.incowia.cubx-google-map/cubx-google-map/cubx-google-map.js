@@ -238,7 +238,7 @@
      * Observe the Cubbles-Component-Model: If value for slot 'markers', add the markers to the google-map
      */
     modelMarkersChanged: function (markers) {
-      this._removeChildrenByTagName('google-map-markers');
+      this._removeChildrenByTagName('google-map-marker');
       for (var i = 0; i < this.getMarkers().length; i++) {
         var markerElement = this._createMarkerElement(this.getMarkers()[i], this._countMarkers);
         if (!this.getMarkers()[i].id) {
