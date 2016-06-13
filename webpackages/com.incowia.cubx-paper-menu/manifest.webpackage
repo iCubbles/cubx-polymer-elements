@@ -148,7 +148,8 @@
             "slotId": "selected",
             "type": "string",
             "direction": [
-              "input"
+              "input",
+              "output"
             ]
           },
           {
