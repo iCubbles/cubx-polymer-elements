@@ -520,14 +520,19 @@
      * @private
      */
     _removeElement: function (baseObject, elementList) {
-      var element;
-      for (var i = 0; i < elementList.length; i++) {
-        if (elementList[i].id && elementList[i].id === baseObject.id) {
-          element = document.querySelector('#' + baseObject.id);
-          this._removeFromMap(element);
-          elementList.splice(i, 1);
-          return;
+      if (baseObject.id) {
+        var element;
+        for (var i = 0; i < elementList.length; i++) {
+          if (elementList[i].id && elementList[i].id === baseObject.id) {
+            element = document.querySelector('#' + baseObject.id);
+            this._removeFromMap(element);
+            elementList.splice(i, 1);
+            return;
+          }
         }
+        console.error('The element with id: \'' + baseObject.id + '\' was not found');
+      } else {
+        console.error('The element should have the property \'id\' to be removed');
       }
     },
 
