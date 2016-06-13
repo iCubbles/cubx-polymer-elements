@@ -39,9 +39,9 @@
     cubxReady: function () {
       this.addEventListener('iron-select', function () {
         this.setSelected(this.$$('paper-menu').selected);
-        this.setSelectedItem(this.$$('paper-menu').selectedItem);
-        this.setSelectedItems(this.$$('paper-menu').selectedItems);
-        this.setSelectedValues(this.$$('paper-menu').selectedValues);
+        this.setSelectedMenuItem(this.$$('paper-menu').selectedItem);
+        this.setSelectedMenuItems(this.$$('paper-menu').selectedItems);
+        this.setSelectedMenuValues(this.$$('paper-menu').selectedValues);
       });
     },
 

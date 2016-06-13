@@ -166,21 +166,21 @@
             ]
           },
           {
-            "slotId": "selectedItem",
+            "slotId": "selectedMenuItem",
             "type": "object",
             "direction": [
               "output"
             ]
           },
           {
-            "slotId": "selectedItems",
+            "slotId": "selectedMenuItems",
             "type": "array",
             "direction": [
               "output"
             ]
           },
           {
-            "slotId": "selectedValues",
+            "slotId": "selectedMenuValues",
             "type": "array",
             "direction": [
               "input",
