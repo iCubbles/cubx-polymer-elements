@@ -148,8 +148,7 @@
             "slotId": "polyToRemove",
             "type": "object",
             "direction": [
-              "input",
-              "output"
+              "input"
             ]
           },
           {
