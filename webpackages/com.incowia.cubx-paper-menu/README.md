@@ -27,7 +27,7 @@ A MenuItem represent an item or a submenu. MenuItems can be added to the menu us
 | Object   | Properties                                                                                                                         |
 |----------|------------------------------------------------------------------------------------------------------------------------------------|
 | Item     | `active`, `ariaActiveAttribute`, `disabled`, `focused`, `stopKeyboardEventPropagation`, `toggles`, `textContent`, `value` and `id` |
-| MenuItem | `disabled`, `focused`, `opened`, `id`, `triggerItem` and `menuItems`                                                               |
+| MenuItem | `disabled`, `focused`, `opened`, `id`, `value`, `triggerItem` and `menuItems`                                                               |
 
 The properties above (excepting `id`, `triggerItem` and `menuItems`) correspond to properties defined for [`paper-item`](https://elements.polymer-project.org/elements/paper-item) and
 [`paper-submenu`](https://elements.polymer-project.org/elements/paper-menu?active=paper-submenu). 
