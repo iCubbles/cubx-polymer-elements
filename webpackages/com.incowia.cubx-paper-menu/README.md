@@ -60,21 +60,7 @@ _cubx.core.rte version_ 1.9.0) as follows:
 <div cubx-core-crc>
      <cubx-paper-menu cubx-dependency="this/cubx-paper-menu/main">
          <cubx-core-init>
-             <cubx-core-slot-init slot="menuItems">
-                 [
-                  {"textContent": "Item 1", "id": "item1", "value": "Item 1"},
-                  {
-                     "triggerItem": {"textContent": "Trigger Item Submenu 1", "value": "Trigger Submenu 1"},
-                     "menuItems": [
-                                    {"textContent": "Item 2.1", "id": "item2-1", "value": "Item 2.1"},
-                                    {"textContent": "Item 2.2", "id": "item2-2", "value": "Item 2.2"}
-                                  ],
-		     "id": "submenu1",
-		     "value": "submenu 1"
-		   },
-                   {"textContent": "Item 3", "id": "item3", "value": "Item 3"}
-                 ]
-             </cubx-core-slot-init>
+             <cubx-core-slot-init slot="menuItems">[{"textContent": "Item 1", "value": "Item 1"},{"textContent": "Item 2", "value": "Item 2"}]</cubx-core-slot-init>
              <cubx-core-slot-init slot="attrForSelected">"value"</cubx-core-slot-init>
          </cubx-core-init>
      </cubx-paper-menu>
