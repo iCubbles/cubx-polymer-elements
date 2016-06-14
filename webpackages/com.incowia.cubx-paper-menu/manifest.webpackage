@@ -113,8 +113,7 @@
             "type": "string",
             "direction": [
               "input"
-            ],
-            "value": "id"
+            ]
           },
           {
             "slotId": "fallbackSelection",
@@ -164,13 +163,6 @@
             "type": "string",
             "direction": [
               "input"
-            ]
-          },
-          {
-            "slotId": "selectedMenuItem",
-            "type": "object",
-            "direction": [
-              "output"
             ]
           },
           {

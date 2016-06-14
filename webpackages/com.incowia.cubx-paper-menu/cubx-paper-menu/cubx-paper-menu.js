@@ -37,16 +37,30 @@
      * Manipulate an element’s local DOM when the cubbles framework is initialized and ready to work.
      */
     cubxReady: function () {
+      var self = this;
+      var paperMenu = self.$$('paper-menu');
       this.addEventListener('iron-select', function () {
-        this.setSelected(this.$$('paper-menu').selected);
-        this.setSelectedMenuItem(this.$$('paper-menu').selectedItem);
-        this.setSelectedMenuItems(this.$$('paper-menu').selectedItems);
-        this.setSelectedMenuValues(this.$$('paper-menu').selectedValues);
+        self.setSelected(paperMenu.selected);
+
+        /* (function (selectedItem) {
+          var validProperties = ['active', 'ariaActiveAttribute', 'disabled', 'focused', 'stopKeyboardEventPropagation',
+            'toggles', 'value', 'id', 'textContent'];
+          var item = {};
+          for (var i = 0; i < validProperties.length; i++) {
+            if (selectedItem[validProperties[i]]) {
+              item[validProperties[i]] = selectedItem[validProperties[i]];
+            }
+          }
+          self.setSelectedMenuItem(item);
+        })(self.$$('paper-menu').selectedItem);*/
+
+        self.setSelectedMenuItems(paperMenu.selectedItems);
+        self.setSelectedMenuValues(paperMenu.selectedValues);
       });
 
       this.addEventListener('iron-deselect', function () {
-        this.setSelectedMenuItems(this.$$('paper-menu').selectedItems);
-        this.setSelectedMenuValues(this.$$('paper-menu').selectedValues);
+        self.setSelectedMenuItems(paperMenu.selectedItems);
+        self.setSelectedMenuValues(paperMenu.selectedValues);
       });
     },
 
