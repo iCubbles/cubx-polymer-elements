@@ -69,9 +69,10 @@ _cubx.core.rte version_ 1.9.0) as follows:
                                     {"textContent": "Item 2.1", "id": "item2-1", "value": "Item 2.1"},
                                     {"textContent": "Item 2.2", "id": "item2-2", "value": "Item 2.2"}
                                   ],
-		     "id": "submenu1"
+		     "id": "submenu1",
+		     "value": "submenu 1"
 		   },
-                   {"textContent": "Item 3", "id": "item3"}
+                   {"textContent": "Item 3", "id": "item3", "value": "Item 3"}
                  ]
              </cubx-core-slot-init>
              <cubx-core-slot-init slot="attrForSelected">"value"</cubx-core-slot-init>
