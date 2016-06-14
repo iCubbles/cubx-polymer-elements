@@ -14,9 +14,9 @@ An the following output slots:
 
 1. **lastId**: last generated id (generated when the id of an element to be added is not provided).
 2. **menuItems**: array of the menuItems that should be contained by the menu.
-3. **selectedMenuItem**: current selected menuItem (same value as the [selectedItem](https://elements.polymer-project.org/elements/paper-menu#property-selectedItem) property of the paper-menu)
+[//]: # (3. **selectedMenuItem**: current selected menuItem (same value as the [selectedItem](https://elements.polymer-project.org/elements/paper-menu#property-selectedItem) property of the paper-menu))
 4. **selectedMenuItems**: current selected menuItems (same value as the [selectedItems](https://elements.polymer-project.org/elements/paper-menu#property-selectedItems) property of the paper-menu)
-5. **selectedMenuValues**: current selected menuValues (same value as the [selectedValues](https://elements.polymer-project.org/elements/paper-menu#property-selectedValues) property of the paper-menu, by default the ids are selected, this can be changed giving a value to the `attrForSelected` slot).
+5. **selectedMenuValues**: current selected menuValues (same value as the [selectedValues](https://elements.polymer-project.org/elements/paper-menu#property-selectedValues) property of the paper-menu, by default the `index` of the items are returned, this can be changed giving a value to the `attrForSelected` slot).
 
 ## Docs
 The generated documentation for this component is available [here](https://cubbles.world/sandbox/com.incowia.cubx-paper-menu@0.1.0-SNAPSHOT/cubx-paper-menu/docs/index.html)
@@ -61,12 +61,20 @@ _cubx.core.rte version_ 1.9.0) as follows:
      <cubx-paper-menu cubx-dependency="this/cubx-paper-menu/main">
          <cubx-core-init>
              <cubx-core-slot-init slot="menuItems">
-                 [{"textContent": "Item 1", "id": "item1"},
-                 {"triggerItem": {"textContent": "Trigger Item Submenu 1"},
-                 "menuItems": [{"textContent": "Item 2.1", "id": "item2-1"}, {"textContent": "Item 2.2", "id": "item2-2"}],
-		 "id": "submenu1"},
-                 {"textContent": "Item 3", "id": "item3"},]
+                 [
+                  {"textContent": "Item 1", "id": "item1", "value": "Item 1"},
+                  {
+                     "triggerItem": {"textContent": "Trigger Item Submenu 1", "value": "Trigger Submenu 1"},
+                     "menuItems": [
+                                    {"textContent": "Item 2.1", "id": "item2-1", "value": "Item 2.1"},
+                                    {"textContent": "Item 2.2", "id": "item2-2", "value": "Item 2.2"}
+                                  ],
+		     "id": "submenu1"
+		   },
+                   {"textContent": "Item 3", "id": "item3"}
+                 ]
              </cubx-core-slot-init>
+             <cubx-core-slot-init slot="attrForSelected">"value"</cubx-core-slot-init>
          </cubx-core-init>
      </cubx-paper-menu>
 </div>
