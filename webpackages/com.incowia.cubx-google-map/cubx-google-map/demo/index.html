@@ -24,29 +24,24 @@
     Note: Currently there is only one element supported. This will change in future (@see PLAT-205).
 -->
 <div cubx-core-crc class="container">
-    <div class="row">
-        <h1>&lt;cubx-google-map&gt; Demo</h1>
-        <cubx-google-map cubx-dependency="this/cubx-google-map/main">
-            <cubx-core-init>
-                <cubx-core-slot-init slot="id">"myCubxGoogleMap"</cubx-core-slot-init>
-                <cubx-core-slot-init slot="zoom">6</cubx-core-slot-init>
-                <cubx-core-slot-init slot="mapType">"satellite"</cubx-core-slot-init>
-            </cubx-core-init>
-        </cubx-google-map>
-    </div>
+    <h1>&lt;cubx-google-map&gt; Demo</h1>
+    <cubx-google-map cubx-dependency="this/cubx-google-map/main">
+        <cubx-core-init>
+            <cubx-core-slot-init slot="id">"myCubxGoogleMap"</cubx-core-slot-init>
+            <cubx-core-slot-init slot="zoom">6</cubx-core-slot-init>
+            <cubx-core-slot-init slot="mapType">"satellite"</cubx-core-slot-init>
+        </cubx-core-init>
+    </cubx-google-map>
 
-    <div class="row">
-        <h2>Info</h2>
-        <div class="col-sm-12 panel panel-default">
-            <cubx-marked-element cubx-dependency="com.incowia.cubx-marked-element@0.1.0-SNAPSHOT/cubx-marked-element/main">
-                <cubx-core-init>
-                    <cubx-core-slot-init slot="markdownUrl">
-                        "https://raw.githubusercontent.com/iCubbles/cubx-polymer-elements/master/webpackages/com.incowia.cubx-google-map/README.md"
-                    </cubx-core-slot-init>
-                </cubx-core-init>
-            </cubx-marked-element>
-        </div>
-    </div>
+    <div style="width:100%;height:1px;background-color:#ddd;display:inline-block;"></div>
+
+    <cubx-marked-element cubx-dependency="com.incowia.cubx-marked-element@0.1.0-SNAPSHOT/cubx-marked-element/main">
+        <cubx-core-init>
+            <cubx-core-slot-init slot="markdownUrl">
+                "https://raw.githubusercontent.com/iCubbles/cubx-polymer-elements/master/webpackages/com.incowia.cubx-google-map/README.md"
+            </cubx-core-slot-init>
+        </cubx-core-init>
+    </cubx-marked-element>
 </div>
 
 <script>
