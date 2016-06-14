@@ -219,23 +219,38 @@
       if (baseObject.menuItems) {
         return this._createSubmenuItem(baseObject);
       } else {
-        return this._createPolymerElement(baseObject, 'paper-item');
+        return this._createPaperItem(baseObject);
       }
     },
 
     /**
+     * Create a paper-item element using an object 'baseObject', that can have the following properties: 'active',
+     * 'ariaActiveAttribute', 'disabled', 'focused', 'stopKeyboardEventPropagation', 'toggles', 'textContent',
+     * 'value', 'id'
+     * @param {object} baseObject - Object to be used to create the polymer element
+     * @return {Element} - Created element
+     * @private
+     */
+    _createPaperItem: function (baseObject) {
+      var validProperties = ['active', 'ariaActiveAttribute', 'disabled', 'focused', 'stopKeyboardEventPropagation',
+        'toggles', 'value', 'id', 'textContent'];
+      return this._createPolymerElement(baseObject, 'paper-item', validProperties);
+    },
+
+    /**
      * Create a paper-submenu element using an object 'baseObject', that can have the following properties: 'disabled',
-     * 'focused', 'opened', 'id', 'triggerItem' and 'menuItems'
+     * 'focused', 'opened', 'id', 'value', 'triggerItem' and 'menuItems'
      * @param {object} baseObject - Object to be used to create the polymer element
      * @return {Element} - Created element
      * @private
      */
     _createSubmenuItem: function (baseObject) {
-      var subMenuElement = this._createPolymerElement(baseObject, 'paper-submenu');
-      baseObject.triggerItem.className = 'menu-trigger';
+      var validProperties = ['disabled', 'focused', 'opened', 'id', 'value', 'menuItems', 'triggerItem'];
+      var subMenuElement = this._createPolymerElement(baseObject, 'paper-submenu', validProperties);
       var triggerItem = this._createMenuItem(baseObject.triggerItem);
+      triggerItem.className = 'menu-trigger';
       Polymer.dom(subMenuElement).appendChild(triggerItem);
-      var subMenuContent = this._createPolymerElement({className: 'menu-content'}, 'paper-menu');
+      var subMenuContent = this._createPolymerElement({className: 'menu-content'}, 'paper-menu', ['className']);
       for (var i = 0; i < baseObject.menuItems.length; i++) {
         Polymer.dom(subMenuContent).appendChild(this._createMenuItem(baseObject.menuItems[i]));
       }
@@ -247,19 +262,22 @@
      * Create a marker element using an object 'baseObject', that can have the properties contain in 'validProperties'
      * @param {object} baseObject - Object to be used to create the polymer element
      * @param {string} tagName - Tag name of the polymer element to be created
+     * @param {string[]} validProperties - Valid properties for the polymer element
      * @return {Element} - Created element
      * @private
      */
-    _createPolymerElement: function (baseObject, tagName) {
+    _createPolymerElement: function (baseObject, tagName, validProperties) {
       if (!baseObject.id) {
         baseObject.id = this.getId() + '_' + tagName + '_' + this._countIds;
         this.setLastId(baseObject.id);
         this._countIds ++;
       }
       var element = document.createElement(tagName);
-      for (var key in baseObject) {
-        element[key] = baseObject[key];
-      }
+      validProperties.forEach(function (key) {
+        if (baseObject[key]) {
+          element[key] = baseObject[key];
+        }
+      });
       return element;
     },
 
