@@ -2,7 +2,7 @@
 This component wraps the [`paper-menu`](https://elements.polymer-project.org/elements/paper-menu) Polymer element, using the [`paper-item`](https://elements.polymer-project.org/elements/paper-item) and 
 [`paper-submenu`](https://elements.polymer-project.org/elements/paper-menu?active=paper-submenu) elements. 
 
-This component exposes the `paper-menu` [properties] (https://elements.polymer-project.org/elements/paper-menu#properties) as input slots, excepting those which are _read only_ properties. Additionally,
+This component exposes the `paper-menu` [properties](https://elements.polymer-project.org/elements/paper-menu#properties) as input slots, excepting those which are _read only_ properties. Additionally,
 this component includes the following input slots: 
 
 1. **id**: id for the `paper-menu` contained by this component.
