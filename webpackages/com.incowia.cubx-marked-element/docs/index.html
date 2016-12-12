@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <title>&lt;com.incowia.cubx-marked-element&gt; generated documentation</title>
 
-    <script src="../../cubx.core.rte@1.9.0/webcomponents/webcomponents-lite.js"></script>
-
-    <script src="../../cubx.core.rte@1.9.0/crc-loader/js/main.js" data-crcinit-loadcif="true"></script>
+    <script src="../../cubx.core.rte@2.1.0/webcomponents-lite/webcomponents-lite.js"></script>
+    <script src="../../cubx.core.rte@2.1.0/crc-loader/js/main.js" data-crcinit-loadcif="true"></script>
 
 </head>
 <body>
@@ -16,17 +15,12 @@
         <h1>&lt;com.incowia.cubx-marked-element&gt; generated documentation</h1>
     </div>
     <div cubx-core-crc class="row">
-        <cubx-webpackage-viewer  cubx-dependency="com.incowia.cubx-webpackage-viewer-package@1.1.0/cubx-webpackage-viewer/main">
+        <cubx-webpackage-viewer  cubx-webpackage-id="com.incowia.cubx-webpackage-viewer@1.4.2">
+            <cubx-core-init style="display:none">
+                <cubx-core-slot-init slot="manifestUrl">"../manifest.webpackage"</cubx-core-slot-init>
+            </cubx-core-init>
         </cubx-webpackage-viewer>
     </div>
 </div>
-
-<script>
-    var webpackageViewer = document.getElementsByTagName('cubx-webpackage-viewer')[0];
-    var manifestUrl = "../manifest.webpackage";
-    document.addEventListener('cifReady', function() {
-        webpackageViewer.setManifestUrl(manifestUrl);
-    });
-</script>
 </body>
 </html>

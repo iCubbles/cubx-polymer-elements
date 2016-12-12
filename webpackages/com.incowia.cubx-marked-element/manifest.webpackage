@@ -2,7 +2,7 @@
   "name": "cubx-marked-element",
   "groupId": "com.incowia",
   "version": "0.1.0-SNAPSHOT",
-  "modelVersion": "8.3.1",
+  "modelVersion": "9.1.1",
   "docType": "webpackage",
   "author": {
     "name": "Edwin Gamboa",
@@ -39,20 +39,6 @@
             "name": "docs",
             "path": "/docs/index.html",
             "description": "Show the interface of this component."
-          }
-        ],
-        "endpoints": [
-          {
-            "endpointId": "main",
-            "description": "This is recommended for you use with webcomponents.",
-            "resources": [
-              "cubx-marked-element.html"
-            ],
-            "dependencies": [
-              "cubx.core.rte@1.9.0/cubxpolymer/main",
-              "polymer-elements-for-1.2.3@1.0.1/marked-element/main",
-              "bootstrap-3.3.5@1.0.3/bootstrap/main"
-            ]
           }
         ],
         "slots": [
@@ -104,6 +90,24 @@
             "direction": [
               "output"
             ]
+          }
+        ],
+        "resources": [
+          "cubx-marked-element.html"
+        ],
+        "dependencies": [
+          {
+            "webpackageId": "cubx.core.rte@2.1.0",
+            "artifactId": "cubxpolymer"
+          },
+          {
+            "webpackageId": "polymer-elements-for-1.2.3@1.0.1",
+            "artifactId": "marked-element",
+            "endpointId": "main"
+          },
+          {
+            "webpackageId": "bootstrap-3.3.5@1.1.1",
+            "artifactId": "bootstrap"
           }
         ]
       }
