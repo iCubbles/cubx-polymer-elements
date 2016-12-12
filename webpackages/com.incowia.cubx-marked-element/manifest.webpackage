@@ -44,6 +44,7 @@
         "slots": [
           {
             "slotId": "id",
+            "description": "html id attribute for the marked-element",
             "type": "string",
             "direction": [
               "input"
@@ -51,6 +52,7 @@
           },
           {
             "slotId": "markdownUrl",
+            "description": "url of a MD file whose content will be displayed by the element.",
             "type": "string",
             "direction": [
               "input"
