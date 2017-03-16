@@ -62,7 +62,6 @@
       var myMap = document.querySelector('google-map');
       myMap.addEventListener('google-map-ready', function (e) {
         this.set('myCubxReady', true);
-
         if (this._initMarkers) {
           this.modelMarkersChanged(this._initMarkers);
         }
@@ -510,6 +509,9 @@
      * @return {Element} - Added marker
      */
     _addMarker: function (marker) {
+      if (!this.getMarkers()) {
+        this.setMarkers([]);
+      }
       var newMarker = this._addElementAsString(
         marker,
         this._createMarkerElement(marker, this._countMarkers),
@@ -525,6 +527,9 @@
      * @return {Element} - Added directions
      */
     _addDirections: function (directions) {
+      if (!this.getDirections()) {
+        this.setDirections([]);
+      }
       var newDirections = this._addElementAsString(
         directions,
         this._createMapDirectionsElement(directions, this._countDirections),
@@ -540,6 +545,9 @@
      * @return {Element} - Added poly
      */
     _addPoly: function (poly) {
+      if (!this.getPolys()) {
+        this.setPolys([]);
+      }
       var newPoly = this._addElement(poly, this._createMapPolyElement(poly, this._countPolys), this.getPolys());
       this._countPolys++;
       return newPoly;

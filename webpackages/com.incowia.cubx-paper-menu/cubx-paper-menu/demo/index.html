@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>&lt;cubx-paper-menu&gt; Demo</title>
 
-    <script src="../../../cubx.core.rte@1.9.0/webcomponents/webcomponents-lite.js"></script>
+    <script src="../../../cubx.core.rte@2.2.2/webcomponents-lite/webcomponents-lite.js"></script>
 
     <!--
         Refer to the crc-loader artifact from a Cubbles-Base.
@@ -14,14 +14,14 @@
         Want to add a 'main' -script to be executed after the dependencies have been loaded?
         If yes, add the following attribute: data-crc-main="js/my-script.js"
     -->
-    <script src="../../../cubx.core.rte@1.9.0/crc-loader/js/main.js" data-crcinit-loadcif="true"></script>
+    <script src="../../../cubx.core.rte@2.2.2/crc-loader/js/main.js" data-crcinit-loadcif="true"></script>
 
 </head>
 <body>
 <div cubx-core-crc class="container">
     <h1>&lt;cubx-paper-menu&gt; Demo</h1>
-    <cubx-paper-menu cubx-dependency="this/cubx-paper-menu/main">
-        <cubx-core-init>
+    <cubx-paper-menu cubx-webpackage-id="this">
+        <cubx-core-init style="display: none">
             <cubx-core-slot-init slot="menuItems">
                 [{"textContent": "Item 1", "value": "Item 1"},{"triggerItem": {"textContent": "Trigger Item Submenu 1", "value": "Trigger Submenu 1"}, "menuItems": [{"textContent": "Item 2.1", "value": "Item 2.1"},{"textContent": "Item 2.2", "value": "Item 2.2"}, { "triggerItem": {"textContent": "Trigger Item Submenu 1.1", "value": "Trigger Submenu 1.1"}, "menuItems": [{"textContent": "Item 2.1.1", "value": "Item 2.1.1."}], "value": "Submenu 1.1" } ], "value": "Submenu 1" }, {"textContent": "Item 3", "value": "Item 3"}, {"textContent": "Item 4", "value": "Item 4"}]
             </cubx-core-slot-init>
@@ -31,8 +31,8 @@
 
     <div style="width:100%;height:1px;background-color:#ddd;display:inline-block;"></div>
 
-    <cubx-marked-element cubx-dependency="com.incowia.cubx-marked-element@0.1.0-SNAPSHOT/cubx-marked-element/main">
-        <cubx-core-init>
+    <cubx-marked-element cubx-webpackage-id="com.incowia.cubx-marked-element@1.1.0-SNAPSHOT">
+        <cubx-core-init style="display: none">
             <cubx-core-slot-init slot="markdownUrl">
                 "https://raw.githubusercontent.com/iCubbles/cubx-polymer-elements/master/webpackages/com.incowia.cubx-paper-menu/README.md"
             </cubx-core-slot-init>

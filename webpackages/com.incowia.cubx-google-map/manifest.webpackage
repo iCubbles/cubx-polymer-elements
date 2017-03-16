@@ -73,17 +73,19 @@
           },
           {
             "slotId": "markers",
-            "type": "number",
+            "type": "array",
             "direction": [
               "input"
-            ]
+            ],
+            "value": []
           },
           {
             "slotId": "directions",
             "type": "array",
             "direction": [
               "input"
-            ]
+            ],
+            "value": []
           },
           {
             "slotId": "polys",
@@ -97,7 +99,8 @@
             "type": "object",
             "direction": [
               "input"
-            ]
+            ],
+            "value": []
           },
           {
             "slotId": "directionsToAdd",
@@ -305,7 +308,7 @@
             "artifactId": "cubxpolymer"
           },
           {
-            "webpackageId": "polymer-elements-for-1.2.3@1.1.0-SNAPSHOT",
+            "webpackageId": "polymer-elements-for-1.2.3@1.1.0",
             "artifactId": "google-map"
           }
         ]

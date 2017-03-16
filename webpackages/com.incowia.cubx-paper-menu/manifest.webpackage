@@ -1,8 +1,8 @@
 {
   "name": "cubx-paper-menu",
   "groupId": "com.incowia",
-  "version": "0.1.0-SNAPSHOT",
-  "modelVersion": "8.3.1",
+  "version": "0.2.0-SNAPSHOT",
+  "modelVersion": "9.1.1",
   "docType": "webpackage",
   "author": {
     "name": "Edwin Gamboa",
@@ -39,21 +39,6 @@
             "name": "docs",
             "path": "/docs/index.html",
             "description": "Show the interface of this component."
-          }
-        ],
-        "endpoints": [
-          {
-            "endpointId": "main",
-            "description": "This is recommended for you use with webcomponents.",
-            "resources": [
-              "cubx-paper-menu.html"
-            ],
-            "dependencies": [
-              "cubx.core.rte@1.9.0/cubxpolymer/main",
-              "polymer-elements-for-1.2.3@1.0.1/paper-menu/paper-menu",
-              "polymer-elements-for-1.2.3@1.0.1/paper-item/main",
-              "polymer-elements-for-1.2.3@1.0.1/paper-menu/paper-submenu"
-            ]
           }
         ],
         "slots": [
@@ -186,6 +171,23 @@
             "direction": [
               "input"
             ]
+          }
+        ],
+        "resources": [
+          "cubx-paper-menu.html"
+        ],
+        "dependencies": [
+          {
+            "webpackageId": "cubx.core.rte@2.2.2",
+            "artifactId": "cubxpolymer"
+          },
+          {
+            "webpackageId": "polymer-elements-for-1.2.3@1.1.0-SNAPSHOT",
+            "artifactId": "paper-menu"
+          },
+          {
+            "webpackageId": "polymer-elements-for-1.2.3@1.1.0-SNAPSHOT",
+            "artifactId": "paper-item"
           }
         ]
       }
