@@ -1,7 +1,7 @@
 {
   "name": "cubx-paper-menu",
   "groupId": "com.incowia",
-  "version": "0.2.0-SNAPSHOT",
+  "version": "0.2.0",
   "modelVersion": "9.1.1",
   "docType": "webpackage",
   "author": {
