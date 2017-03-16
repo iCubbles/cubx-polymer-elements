@@ -1,7 +1,7 @@
 {
   "name": "cubx-marked-element",
   "groupId": "com.incowia",
-  "version": "1.1.1-SNAPSHOT",
+  "version": "1.1.1",
   "modelVersion": "9.1.1",
   "docType": "webpackage",
   "author": {
@@ -103,7 +103,7 @@
             "artifactId": "cubxpolymer"
           },
           {
-            "webpackageId": "polymer-elements-for-1.2.3@1.1.0-SNAPSHOT",
+            "webpackageId": "polymer-elements-for-1.2.3@1.1.0",
             "artifactId": "marked-element"
 
           }
