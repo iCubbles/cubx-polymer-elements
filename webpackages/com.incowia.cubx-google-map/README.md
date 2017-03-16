@@ -35,7 +35,7 @@ The properties above (excepting`id`) correspond to properties defined for [`goog
 When the `id` is not provided, it will be generated during addition. The last generated id can be accessed using the `lastId` slot.
 
 ## Docs
-The generated documentation for this component is available [here](https://cubbles.world/sandbox/com.incowia.cubx-google-map@1.0.0-SNAPSHOT/cubx-google-map/docs/index.html)
+The generated documentation for this component is available [here](https://cubbles.world/sandbox/com.incowia.cubx-google-map@1.1.0/cubx-google-map/docs/index.html)
 
 ## Use
 The html file should contain the component, which can be optionally initialized using the `<cubx-core-slot-init>` tag (available from 
@@ -89,13 +89,13 @@ googleMapComponent.setMarkerToRemove(marker);
 ```
 
 ## Demos
-1. [**cubx-google-map**](https://cubbles.world/sandbox/com.incowia.cubx-google-map@1.0.0-SNAPSHOT/cubx-google-map/demo/index.html): 
+1. [**cubx-google-map**](https://cubbles.world/sandbox/com.incowia.cubx-google-map@1.0.0/cubx-google-map/demo/index.html): 
 a simple demo to show the use of `cubx-google-map`. Links: 
 [Sources](https://github.com/iCubbles/cubx-polymer-elements/blob/master/webpackages/com.incowia.cubx-google-map/cubx-google-map/demo/index.html).
 
-2. [**German States**](https://cubbles.world/sandbox/com.incowia.cubx-google-map@1.0.0-SNAPSHOT/cubx-google-map/germanStatesDemo/index.html): a demo that uses Polys (data loaded from a kml file) to visualize Germany's states. 
+2. [**German States**](https://cubbles.world/sandbox/com.incowia.cubx-google-map@1.1.0/cubx-google-map/germanStatesDemo/index.html): a demo that uses Polys (data loaded from a kml file) to visualize Germany's states. 
 Links: [Sources](https://github.com/iCubbles/cubx-polymer-elements/blob/master/webpackages/com.incowia.cubx-google-map/cubx-google-map/germanStatesDemo/index.html).
 
- * [**German States (Only Cubbles)**](https://cubbles.world/sandbox/com.incowia.demo.cubx-polymer-elements-demos@0.1.0-SNAPSHOT/german-states/demo/index.html) the same demo from above but this time as a compound component using the [`cubx-checkbox` component](https://github.com/iCubbles/base-html-components) and the `cubx-google-map` as memebers. Links: [Sources](https://github.com/iCubbles/cubx-polymer-elements-demos/tree/master/webpackages/com.incowia.demo.cubx-polymer-elements-demos), [Compound component docs](https://cubbles.world/sandbox/com.incowia.demo.cubx-polymer-elements-demos@0.1.0-SNAPSHOT/german-states/docs/index.html).
+ * [**German States (Only Cubbles)**](https://cubbles.world/sandbox/com.incowia.demo.cubx-polymer-elements-demos@0.3.1/german-states/demo/index.html) the same demo from above but this time as a compound component using the [`cubx-checkbox` component](https://github.com/iCubbles/base-html-components) and the `cubx-google-map` as memebers. Links: [Sources](https://github.com/iCubbles/cubx-polymer-elements-demos/tree/master/webpackages/com.incowia.demo.cubx-polymer-elements-demos), [Compound component docs](https://cubbles.world/sandbox/com.incowia.demo.cubx-polymer-elements-demos@0.3.1/german-states/docs/index.html).
 
-3. [**My location app**](https://cubbles.world/sandbox/com.incowia.demo.cubx-polymer-elements-demos@0.1.0-SNAPSHOT/my-location/index.html): Application to show current location on a `cubx-google-map`. Links: [Sources](https://github.com/iCubbles/cubx-polymer-elements-demos/tree/master/webpackages/com.incowia.demo.cubx-polymer-elements-demos)
+3. [**My location app**](https://cubbles.world/sandbox/com.incowia.demo.cubx-polymer-elements-demos@0.3.1/my-location/index.html): Application to show current location on a `cubx-google-map`. Links: [Sources](https://github.com/iCubbles/cubx-polymer-elements-demos/tree/master/webpackages/com.incowia.demo.cubx-polymer-elements-demos)
