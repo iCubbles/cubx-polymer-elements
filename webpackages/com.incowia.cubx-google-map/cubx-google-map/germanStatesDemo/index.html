@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <title> German states using &lt;cubx-google-map&gt;</title>
 
-    <script src="../../../cubx.core.rte@1.9.0/webcomponents/webcomponents-lite.js"></script>
+    <script src="../../../cubx.core.rte@2.2.2/webcomponents-lite/webcomponents-lite.js"></script>
 
     <script>
         window.cubx = {
             CRCInit: {
                 rootDependencies: [
-                    "../../../bootstrap-3.3.5@1.0.3/bootstrap/main"
+                    {
+                        webpackageId: "bootstrap-3.3.5@1.1.1",
+                        artifactId: "bootstrap"
+                    }
                 ]
             }
         }
@@ -24,7 +27,7 @@
         Want to add a 'main' -script to be executed after the dependencies have been loaded?
         If yes, add the following attribute: data-crc-main="js/my-script.js"
     -->
-    <script src="../../../cubx.core.rte@1.9.0/crc-loader/js/main.js" data-crcinit-loadcif="true"></script>
+    <script src="../../../cubx.core.rte@2.2.2/crc-loader/js/main.js" data-crcinit-loadcif="true"></script>
 
 </head>
 <body>
@@ -42,12 +45,13 @@
             <input type="checkbox" id="selectAllCB" checked/><span>Select/Deselect all</span>
         </div>
         <div class="col-sm-10" cubx-core-crc>
-            <cubx-google-map cubx-dependency="this/cubx-google-map/main">
-                <cubx-core-init>
+            <cubx-google-map cubx-webpackage-id="this">
+                <cubx-core-init style="display: none">
                     <cubx-core-slot-init slot="id">"bundesLaenderDE"</cubx-core-slot-init>
                     <cubx-core-slot-init slot="latitude">51.3</cubx-core-slot-init>
                     <cubx-core-slot-init slot="longitude">10.3</cubx-core-slot-init>
                     <cubx-core-slot-init slot="zoom">6</cubx-core-slot-init>
+                    <cubx-core-slot-init slot="apiKey">"AIzaSyBl8tDNv9bOgj5PteLe177WTsWCB6oLeLk"</cubx-core-slot-init>
                 </cubx-core-init>
             </cubx-google-map>
         </div>

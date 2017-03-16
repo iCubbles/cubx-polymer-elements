@@ -15,6 +15,16 @@
     _countDirections: 0,
     _countMarkers: 0,
 
+    _initString: '',
+    _styleString: '',
+
+    properties: {
+      myCubxReady: {
+        type: Boolean,
+        value: false
+      }
+    },
+
     /**
      * Manipulate an element’s local DOM when the element is created.
      */
@@ -25,9 +35,9 @@
      * Manipulate an element’s local DOM when the element is created and initialized.
      */
     ready: function () {
-      this.setMarkers([]);
-      this.setDirections([]);
-      this.setPolys([]);
+      // this.setMarkers([]);
+      // this.setDirections([]);
+      // this.setPolys([]);
     },
 
     /**
@@ -38,8 +48,57 @@
 
     /**
      * Manipulate an element’s local DOM when the cubbles framework is initialized and ready to work.
+     * Add google map after cif initialization. (Becouse apiKey should be added by initialization.
+     * After google map is avaible, add the inits.
      */
     cubxReady: function () {
+      var innerHtml = '<google-map ' + this._initString;
+      if (this._styleString.length > 0) {
+        innerHtml += 'style = "' + this._styleString + '"';
+      }
+      innerHtml += '></google-map>';
+      Polymer.dom(this.root).innerHTML += innerHtml;
+      Polymer.dom.flush();
+      var myMap = document.querySelector('google-map');
+      myMap.addEventListener('google-map-ready', function (e) {
+        this.set('myCubxReady', true);
+
+        if (this._initMarkers) {
+          this.modelMarkersChanged(this._initMarkers);
+        }
+        if (this._initDirections) {
+          this.modelDirectionsChanged(this._initDirections);
+        }
+        if (this._initPolys) {
+          this.modelPolysChanged(this._initPolys);
+        }
+      }.bind(this));
+    },
+
+    /**
+     * Create the key/value to google map as attribute string (key="value")
+     * @param key attribute name
+     * @param value attribute value
+     * @private
+     */
+    _createGoogleMapAttributes: function (key, value) {
+      if (this._initString.length > 0) {
+        this._initString += ' ';
+      }
+      this._initString += key + '="' + value + '"';
+    },
+
+    /**
+     * Add the key/value as style (key: value;) to google map.
+     * @param key style property
+     * @param value style value
+     * @private
+     */
+    _createGoogleMapStyle: function (key, value) {
+      if (this._styleString.length > 0) {
+        this._styleString += ' ';
+      }
+      this._styleString += key + ':' + value + ';';
     },
 
     /**
@@ -47,15 +106,23 @@
      * element's property with the same name is updated
      */
     modelIdChanged: function (id) {
-      this.$$('google-map').id = id;
+      if (this.myCubxReady) {
+        this.$$('google-map').id = id;
+      } else {
+        this._createGoogleMapAttributes('id', id);
+      }
     },
 
     /**
      * Observe the Cubbles-Component-Model: If value for slot 'additionalMapOptions' has changed, the google-map
-     * element's property with the same name is updated
+     * element's property with the same name is updated.
      */
     modelAdditionalMapOptionsChanged: function (additionalMapOptions) {
-      this.$$('google-map').additionalMapOptions = additionalMapOptions;
+      if (this.myCubxReady) {
+        this.$$('google-map').additionalMapOptions = additionalMapOptions;
+      } else {
+        this._createGoogleMapAttributes('additional-map-options', additionalMapOptions);
+      }
     },
 
     /**
@@ -63,7 +130,11 @@
      * google-map element is updated
      */
     modelApiKeyChanged: function (apiKey) {
-      this.$$('google-map').apiKey = apiKey;
+      if (this.myCubxReady) {
+        this.$$('google-map').apiKey = apiKey;
+      } else {
+        this._createGoogleMapAttributes('api-key', apiKey);
+      }
     },
 
     /**
@@ -71,7 +142,11 @@
      * the google-map element is updated
      */
     modelClickEventsChanged: function (clickEvents) {
-      this.$$('google-map').clickEvents = clickEvents;
+      if (this.myCubxReady) {
+        this.$$('google-map').clickEvents = clickEvents;
+      } else {
+        this._createGoogleMapAttributes('click-events', clickEvents);
+      }
     },
 
     /**
@@ -79,7 +154,11 @@
      * google-map element is updated
      */
     modelClientIdChanged: function (clientId) {
-      this.$$('google-map').clientId = clientId;
+      if (this.myCubxReady) {
+        this.$$('google-map').clientId = clientId;
+      } else {
+        this._createGoogleMapAttributes('client-id', clientId);
+      }
     },
 
     /**
@@ -87,7 +166,11 @@
      * property of the google-map element is updated
      */
     modelDisableDefaultUiChanged: function (disableDefaultUi) {
-      this.$$('google-map').disableDefaultUi = disableDefaultUi;
+      if (this.myCubxReady) {
+        this.$$('google-map').disableDefaultUi = disableDefaultUi;
+      } else {
+        this._createGoogleMapAttributes('disable-default-ui', disableDefaultUi);
+      }
     },
 
     /**
@@ -95,7 +178,11 @@
      * the google-map element is updated
      */
     modelDisableZoomChanged: function (disableZoom) {
-      this.$$('google-map').disableZoom = disableZoom;
+      if (this.myCubxReady) {
+        this.$$('google-map').disableZoom = disableZoom;
+      } else {
+        this._createGoogleMapAttributes('disable-zoom', disableZoom);
+      }
     },
 
     /**
@@ -103,7 +190,11 @@
      * the google-map element is updated
      */
     modelDragEventsChanged: function (dragEvents) {
-      this.$$('google-map').dragEvents = dragEvents;
+      if (this.myCubxReady) {
+        this.$$('google-map').dragEvents = dragEvents;
+      } else {
+        this._createGoogleMapAttributes('drag-events', dragEvents);
+      }
     },
 
     /**
@@ -111,7 +202,11 @@
      * the google-map element is updated
      */
     modelFitToMarkersChanged: function (fitToMarkers) {
-      this.$$('google-map').fitToMarkers = fitToMarkers;
+      if (this.myCubxReady) {
+        this.$$('google-map').fitToMarkers = fitToMarkers;
+      } else {
+        this._createGoogleMapAttributes('fit-to-markers', fitToMarkers);
+      }
     },
 
     /**
@@ -119,7 +214,11 @@
      * google-map element is updated
      */
     modelKmlChanged: function (kml) {
-      this.$$('google-map').kml = kml;
+      if (this.myCubxReady) {
+        this.$$('google-map').kml = kml;
+      } else {
+        this._createGoogleMapAttributes('kml', kml);
+      }
     },
 
     /**
@@ -127,7 +226,11 @@
      * google-map element is updated
      */
     modelLanguageChanged: function (language) {
-      this.$$('google-map').language = language;
+      if (this.myCubxReady) {
+        this.$$('google-map').language = language;
+      } else {
+        this._createGoogleMapAttributes('language', language);
+      }
     },
 
     /**
@@ -135,7 +238,11 @@
      * google-map element is updated
      */
     modelLatitudeChanged: function (latitude) {
-      this.$$('google-map').latitude = latitude;
+      if (this.myCubxReady) {
+        this.$$('google-map').latitude = latitude;
+      } else {
+        this._createGoogleMapAttributes('latitude', latitude);
+      }
     },
 
     /**
@@ -143,7 +250,11 @@
      * google-map element is updated
      */
     modelLongitudeChanged: function (longitude) {
-      this.$$('google-map').longitude = longitude;
+      if (this.myCubxReady) {
+        this.$$('google-map').longitude = longitude;
+      } else {
+        this._createGoogleMapAttributes('longitude', longitude);
+      }
     },
 
     /**
@@ -151,7 +262,11 @@
      * google-map element is updated
      */
     modelMapTypeChanged: function (mapType) {
-      this.$$('google-map').mapType = mapType;
+      if (this.myCubxReady) {
+        this.$$('google-map').mapType = mapType;
+      } else {
+        this._createGoogleMapAttributes('map-type', mapType);
+      }
     },
 
     /**
@@ -159,7 +274,11 @@
      * google-map element is updated
      */
     modelMaxZoomChanged: function (maxZoom) {
-      this.$$('google-map').maxZoom = maxZoom;
+      if (this.myCubxReady) {
+        this.$$('google-map').maxZoom = maxZoom;
+      } else {
+        this._createGoogleMapAttributes('max-zoom', maxZoom);
+      }
     },
 
     /**
@@ -167,7 +286,11 @@
      * google-map element is updated
      */
     modelMinZoomChanged: function (minZoom) {
-      this.$$('google-map').minZoom = minZoom;
+      if (this.myCubxReady) {
+        this.$$('google-map').minZoom = minZoom;
+      } else {
+        this._createGoogleMapAttributes('min-zoom', minZoom);
+      }
     },
 
     /**
@@ -175,7 +298,11 @@
      * google-map element is updated
      */
     modelNoAutoTiltChanged: function (noAutoTilt) {
-      this.$$('google-map').noAutoTilt = noAutoTilt;
+      if (this.myCubxReady) {
+        this.$$('google-map').noAutoTilt = noAutoTilt;
+      } else {
+        this._createGoogleMapAttributes('no-auto-tilt', noAutoTilt);
+      }
     },
 
     /**
@@ -183,7 +310,11 @@
      * google-map element is updated
      */
     modelSignedInChanged: function (signedIn) {
-      this.$$('google-map').signedIn = signedIn;
+      if (this.myCubxReady) {
+        this.$$('google-map').signedIn = signedIn;
+      } else {
+        this._createGoogleMapAttributes('signed-in', signedIn);
+      }
     },
 
     /**
@@ -191,7 +322,11 @@
      * property of the google-map element is updated
      */
     modelSingleInfoWindowChanged: function (singleInfoWindow) {
-      this.$$('google-map').singleInfoWindow = singleInfoWindow;
+      if (this.myCubxReady) {
+        this.$$('google-map').singleInfoWindow = singleInfoWindow;
+      } else {
+        this._createGoogleMapAttributes('signed-in-info-window', singleInfoWindow);
+      }
     },
 
     /**
@@ -199,7 +334,14 @@
      * google-map element is updated
      */
     modelStylesChanged: function (styles) {
-      this.$$('google-map').styles = styles;
+      if (this.myCubxReady) {
+        this.$$('google-map').styles = styles;
+      } else {
+        if (this._styleString.length > 0) {
+          this._styleString += ' ';
+        }
+        this._styleString += this.styles;
+      }
     },
 
     /**
@@ -207,7 +349,11 @@
      * google-map element is updated
      */
     modelVersionChanged: function (version) {
-      this.$$('google-map').version = version;
+      if (this.myCubxReady) {
+        this.$$('google-map').version = version;
+      } else {
+        this._createGoogleMapAttributes('version', version);
+      }
     },
 
     /**
@@ -215,7 +361,11 @@
      * element is updated
      */
     modelZoomChanged: function (zoom) {
-      this.$$('google-map').zoom = zoom;
+      if (this.myCubxReady) {
+        this.$$('google-map').zoom = zoom;
+      } else {
+        this._createGoogleMapAttributes('zoom', zoom);
+      }
     },
 
     /**
@@ -223,7 +373,11 @@
      * element is updated
      */
     modelWidthChanged: function (width) {
-      this.$$('google-map').style.width = width;
+      if (this.myCubxReady) {
+        this.$$('google-map').style.width = width;
+      } else {
+        this._createGoogleMapStyle('width', width);
+      }
     },
 
     /**
@@ -231,21 +385,29 @@
      * element is updated
      */
     modelHeightChanged: function (height) {
-      this.$$('google-map').style.height = height;
+      if (this.myCubxReady) {
+        this.$$('google-map').style.height = height;
+      } else {
+        this._createGoogleMapStyle('height', height);
+      }
     },
 
     /**
      * Observe the Cubbles-Component-Model: If value for slot 'markers', add the markers to the google-map
      */
     modelMarkersChanged: function (markers) {
-      this._removeChildrenByTagName('google-map-marker');
-      for (var i = 0; i < this.getMarkers().length; i++) {
-        var markerElement = this._createMarkerElement(this.getMarkers()[i], this._countMarkers);
-        if (!this.getMarkers()[i].id) {
-          this.getMarkers()[i].id = markerElement.id;
+      if (this.myCubxReady) {
+        this._removeChildrenByTagName('google-map-marker');
+        for (var i = 0; i < this.getMarkers().length; i++) {
+          var markerElement = this._createMarkerElement(this.getMarkers()[ i ], this._countMarkers);
+          if (!this.getMarkers()[ i ].id) {
+            this.getMarkers()[ i ].id = markerElement.id;
+          }
+          this._addToMapInnerHtml(markerElement);
+          this._countMarkers++;
         }
-        this._appendElementToTheMap(markerElement);
-        this._countMarkers++;
+      } else {
+        this._initMarkers = markers;
       }
     },
 
@@ -253,14 +415,19 @@
      * Observe the Cubbles-Component-Model: If value for slot 'directions', add the directions to the google-map
      */
     modelDirectionsChanged: function (directions) {
-      this._removeChildrenByTagName('google-map-directions');
-      for (var i = 0; i < this.getDirections().length; i++) {
-        var directionsElement = this._createMapDirectionsElement(this.getDirections()[i], this._countDirections);
-        if (!this.getDirections()[i].id) {
-          this.getDirections()[i].id = directionsElement.id;
+      if (this.myCubxReady) {
+        this._removeChildrenByTagName('google-map-directions');
+        for (var i = 0; i < this.getDirections().length; i++) {
+          var directionsElement = this._createMapDirectionsElement(this.getDirections()[ i ], this._countDirections);
+          // if (!this.getDirections()[ i ].id) {
+          //   this.getDirections()[ i ].id = directionsElement.id;
+          // }
+
+          this._addToMapInnerHtml(directionsElement);
+          this._countDirections++;
         }
-        this._appendElementToTheMap(directionsElement);
-        this._countDirections++;
+      } else {
+        this._initDirections = directions;
       }
     },
 
@@ -268,14 +435,19 @@
      * Observe the Cubbles-Component-Model: If value for slot 'polys', add the polys to the google-map
      */
     modelPolysChanged: function (polys) {
-      this._removeChildrenByTagName('google-map-poly');
-      for (var i = 0; i < this.getPolys().length; i++) {
-        var polyElement = this._createMapPolyElement(this.getPolys()[i], this._countPolys);
-        if (!this.getPolys()[i].id) {
-          this.getPolys()[i].id = polyElement.id;
+      if (this.myCubxReady) {
+        this._removeChildrenByTagName('google-map-poly');
+        for (var i = 0; i < this.getPolys().length; i++) {
+          var polyElement = this._createMapPolyElement(this.getPolys()[ i ], this._countPolys);
+          if (!this.getPolys()[ i ].id) {
+            this.getPolys()[ i ].id = polyElement.id;
+          }
+
+          this._appendElementToTheMap(polyElement);
+          this._countPolys++;
         }
-        this._appendElementToTheMap(polyElement);
-        this._countPolys++;
+      } else {
+        this._initPolys = polys;
       }
     },
 
@@ -338,7 +510,7 @@
      * @return {Element} - Added marker
      */
     _addMarker: function (marker) {
-      var newMarker = this._addElement(
+      var newMarker = this._addElementAsString(
         marker,
         this._createMarkerElement(marker, this._countMarkers),
         this.getMarkers()
@@ -353,7 +525,7 @@
      * @return {Element} - Added directions
      */
     _addDirections: function (directions) {
-      var newDirections = this._addElement(
+      var newDirections = this._addElementAsString(
         directions,
         this._createMapDirectionsElement(directions, this._countDirections),
         this.getDirections()
@@ -404,6 +576,19 @@
      * @param {object} elementList - List that contains the baseObject (markers, directions, polys)
      * @private
      */
+    _addElementAsString: function (baseObject, element, elementList) {
+      elementList.push(baseObject);
+      this._addToMapInnerHtml(element);
+      return baseObject;
+    },
+
+    /**
+     * Append a 'baseObject' to the map using the Polymer DOM
+     * @param {object} baseObject - Base object that was used to create the element to be append to the map
+     * @param {Element} element - Html element o be append to the map
+     * @param {object} elementList - List that contains the baseObject (markers, directions, polys)
+     * @private
+     */
     _addElement: function (baseObject, element, elementList) {
       if (!baseObject.id) {
         baseObject.id = element.id;
@@ -422,13 +607,12 @@
      * @private
      */
     _createMarkerElement: function (marker, index) {
-      var validKeys = ['icon', 'latitude', 'longitude', 'title', 'zIndex', 'animation', 'draggable', 'id'];
-      var markerEl = this._createPolymerElement(marker, 'google-map-marker', validKeys, index);
+      var validKeys = [ 'icon', 'latitude', 'longitude', 'title', 'zIndex', 'animation', 'draggable', 'id' ];
+      var content;
       if (marker.title) {
-        var titleSpan = document.createElement('span');
-        titleSpan.textContent = marker.title;
-        markerEl.appendChild(titleSpan);
+        content = '<span>' + marker.title + '</span>';
       }
+      var markerEl = this._createPolymerElementString(marker, 'google-map-marker', validKeys, index, content);
       return markerEl;
     },
 
@@ -441,8 +625,8 @@
      * @private
      */
     _createMapDirectionsElement: function (directions, index) {
-      var validKeys = ['startAddress', 'endAddress', 'travelMode', 'waypoints', 'id'];
-      return this._createPolymerElement(directions, 'google-map-directions', validKeys, index);
+      var validKeys = [ 'startAddress', 'endAddress', 'travelMode', 'waypoints', 'id', 'apiKey' ];
+      return this._createPolymerElementString(directions, 'google-map-directions', validKeys, index);
     },
 
     /**
@@ -455,14 +639,25 @@
      * @private
      */
     _createMapPolyElement: function (poly, index) {
-      var validKeys = ['closed', 'draggable', 'editable', 'fillColor', 'fillOpacity', 'geodesic', 'icons', 'strokeColor',
-        'strokeOpacity', 'strokePosition', 'strokeWeight', 'zIndex', 'id'];
+      var validKeys = [ 'closed',
+        'draggable',
+        'editable',
+        'fillColor',
+        'fillOpacity',
+        'geodesic',
+        'icons',
+        'strokeColor',
+        'strokeOpacity',
+        'strokePosition',
+        'strokeWeight',
+        'zIndex',
+        'id' ];
       var polyEl = this._createPolymerElement(poly, 'google-map-poly', validKeys, index);
       if (poly.points) {
         var pointEl;
         var self = this;
         poly.points.forEach(function (point) {
-          pointEl = self._createPolymerElement(point, 'google-map-point', ['latitude', 'longitude']);
+          pointEl = self._createPolymerElement(point, 'google-map-point', [ 'latitude', 'longitude' ]);
           Polymer.dom(polyEl).appendChild(pointEl);
         });
       }
@@ -485,10 +680,50 @@
       }
       var element = document.createElement(tagName);
       validProperties.forEach(function (key) {
-        if (baseObject[key]) {
-          element[key] = baseObject[key];
+        if (baseObject[ key ]) {
+          element[ key ] = baseObject[ key ];
         }
       });
+      return element;
+    },
+
+    /**
+     * Create a marker element string using an object 'baseObject', that can have the properties contain in 'validProperties'
+     * The created string should be add  to innerHTML
+     * @param {object} baseObject - Object to be used to create the polymer element
+     * @param {string} tagName - Tag name of the polymer element to be created
+     * @param {string[]} validProperties - Valid properties for the polymer element
+     * @param {number} index - Index of the element within its list
+     * @return {Element} - Created element
+     * @private
+     */
+    _createPolymerElementString: function (baseObject, tagName, validProperties, index, content) {
+      if (!baseObject.id && tagName !== 'google-map-point') {
+        baseObject.id = this.getId() + '_' + tagName + '_' + index;
+        this.setLastId(baseObject.id);
+      }
+      if (!baseObject.apiKey && validProperties.indexOf('apiKey') > -1 && this.getApiKey()) {
+        baseObject.apiKey = this.getApiKey();
+      }
+
+      var element = '<' + tagName;
+      validProperties.forEach(function (key) {
+        if (baseObject[ key ]) {
+          var attributeKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+          if (typeof baseObject[ key ] === 'object') {
+            element += ' ' + attributeKey + "='" + JSON.stringify(baseObject[ key ]) + "'";
+          } else {
+            element += ' ' + attributeKey + '="' + baseObject[ key ] + '"';
+          }
+        }
+      });
+
+      element += '>';
+      if (content) {
+        element += content;
+      }
+
+      element += '</' + tagName + '>';
       return element;
     },
 
@@ -499,6 +734,16 @@
      */
     _appendElementToTheMap: function (element) {
       Polymer.dom(this.$$('google-map')).appendChild(element);
+      Polymer.dom.flush();
+    },
+
+    /**
+     * Append a string to <google-map>'s innerHTML property.
+     * @param childStr content as a string
+     * @private
+     */
+    _addToMapInnerHtml: function (childStr) {
+      Polymer.dom(this.$$('google-map')).innerHTML += childStr;
     },
 
     /**
@@ -509,7 +754,7 @@
     _removeChildrenByTagName: function (tagName) {
       var elements = document.querySelectorAll(tagName);
       for (var i = 0; i < elements.length; i++) {
-        this._removeFromMap(elements[i]);
+        this._removeFromMap(elements[ i ]);
       }
     },
 
@@ -523,7 +768,7 @@
       if (baseObject.id) {
         var element;
         for (var i = 0; i < elementList.length; i++) {
-          if (elementList[i].id && elementList[i].id === baseObject.id) {
+          if (elementList[ i ].id && elementList[ i ].id === baseObject.id) {
             element = document.querySelector('#' + baseObject.id);
             this._removeFromMap(element);
             elementList.splice(i, 1);
@@ -546,6 +791,5 @@
       var parent = Polymer.dom(child).parentNode;
       Polymer.dom(parent).removeChild(child);
     }
-
   });
 }());

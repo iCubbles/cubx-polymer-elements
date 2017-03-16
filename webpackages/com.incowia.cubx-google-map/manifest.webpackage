@@ -1,8 +1,8 @@
 {
   "name": "cubx-google-map",
   "groupId": "com.incowia",
-  "version": "1.0.0-SNAPSHOT",
-  "modelVersion": "8.3.1",
+  "version": "1.0.1-SNAPSHOT",
+  "modelVersion": "9.1.1",
   "docType": "webpackage",
   "author": {
     "name": "Edwin Gamboa",
@@ -44,23 +44,6 @@
             "name": "docs",
             "path": "/docs/index.html",
             "description": "Show the interface of this component."
-          }
-        ],
-        "endpoints": [
-          {
-            "endpointId": "main",
-            "description": "This is recommended for you use with webcomponents.",
-            "resources": [
-              "cubx-google-map.html"
-            ],
-            "dependencies": [
-              "cubx.core.rte@1.9.0/cubxpolymer/main",
-              "polymer-elements-for-1.2.3@1.0.1/google-map/google-map",
-              "polymer-elements-for-1.2.3@1.0.1/google-map/google-map-marker",
-              "polymer-elements-for-1.2.3@1.0.1/google-map/google-map-directions",
-              "polymer-elements-for-1.2.3@1.0.1/google-map/google-map-point",
-              "polymer-elements-for-1.2.3@1.0.1/google-map/google-map-poly"
-            ]
           }
         ],
         "slots": [
@@ -311,6 +294,19 @@
             "direction": [
               "input"
             ]
+          }
+        ],
+        "resources": [
+          "cubx-google-map.html"
+        ],
+        "dependencies": [
+          {
+            "webpackageId": "cubx.core.rte@2.2.2",
+            "artifactId": "cubxpolymer"
+          },
+          {
+            "webpackageId": "polymer-elements-for-1.2.3@1.1.0-SNAPSHOT",
+            "artifactId": "google-map"
           }
         ]
       }

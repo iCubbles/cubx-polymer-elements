@@ -99,17 +99,13 @@
         ],
         "dependencies": [
           {
-            "webpackageId": "cubx.core.rte@2.1.0",
+            "webpackageId": "cubx.core.rte@2.2.2",
             "artifactId": "cubxpolymer"
           },
           {
-            "webpackageId": "polymer-elements-for-1.2.3@1.0.1",
-            "artifactId": "marked-element",
-            "endpointId": "main"
-          },
-          {
-            "webpackageId": "bootstrap-3.3.5@1.1.1",
-            "artifactId": "bootstrap"
+            "webpackageId": "polymer-elements-for-1.2.3@1.1.0-SNAPSHOT",
+            "artifactId": "marked-element"
+
           }
         ]
       }
